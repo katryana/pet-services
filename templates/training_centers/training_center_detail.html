@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ training_center.name }}
+  </h1>
+
+  <p><strong>City:</strong> {{ training_center.city }}</p>
+  {% if training_center.services.all %}
+    <h4>This center provided such services</h4>
+    <ul>
+      {% for service in training_center.services.all %}
+        <li>{{ service }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>We don't provide any services yet</p>
+  {% endif %}
+
+  <div class="ml-3">
+    <h4>Our specialists:</h4>
+    {% for specialist in training_center.specialists.all %}
+        <hr>
+        <p><strong>{{ specialist.first_name }} {{ specialist.last_name }}</strong></p>
+        <p><strong>Contacts:</strong> {{ specialist.phone_number }}</p>
+
+    {% empty %}
+      <p>We don't have any specialist yet</p>
+    {% endfor %}
+  </div>
+{% endblock %}

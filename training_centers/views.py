@@ -41,3 +41,17 @@ class SpecialistListView(generic.ListView):
     paginate_by = 7
     specialists = Specialist.objects.select_related("training_centers")
     queryset = specialists.prefetch_related("services")
+
+
+class TrainingCenterDetailView(generic.DetailView):
+    model = TrainingCenter
+    template_name = "training_centers/training_center_detail.html"
+    context_object_name = "training_center"
+
+
+class ServiceDetailView(generic.DetailView):
+    model = Service
+
+
+class SpecialistDetailView(generic.DetailView):
+    model = Specialist

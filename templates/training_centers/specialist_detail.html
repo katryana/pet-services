@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ specialist.first_name }} {{ specialist.last_name }}
+  </h1>
+
+  <p><strong>Training center:</strong> {{ specialist.training_centers }}</p>
+
+  <h4>Fields of competence</h4>
+  {% if specialist.services %}
+    <ul>
+      {% for service in specialist.services.all %}
+        <li><p>{{ service.name }}, price: {{ service.price }}</p></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>This specialist doesn't provide any service yet</p>
+  {% endif %}
+  <p><strong>Contacts:</strong> {{ specialist.phone_number }}</p>
+{% endblock %}
