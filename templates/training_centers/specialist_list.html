@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    We have such training specialists
+  </h1>
+
+  {% if specialist_list %}
+    {% for specialist in specialist_list %}
+      <h3>{{ specialist.first_name }} {{ specialist.last_name }}</h3>
+      <p>Works at {{ specialist.training_centers }}</p>
+    {% endfor %}
+  {% else %}
+    <p>There are no specialists in our training centers yet</p>
+  {% endif %}
+{% endblock %}

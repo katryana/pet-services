@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>DOGGIE WELFARE</h1>
-    <p>Network of training center for dogs</p>
+  <h1>DOGGIE WELFARE</h1>
+  <p>Network of training center for dogs</p>
+    <ul>
+      <li><strong>Training centers</strong> {{ num_training_centers }}</li>
+      <li><strong>Specialists</strong> {{ num_specialists }}</li>
+      <li><strong>Services</strong> {{ num_services }}</li>
+    </ul>
 {% endblock %}

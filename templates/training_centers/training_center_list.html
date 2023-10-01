@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    We have such training centers
+  </h1>
+
+  {% if training_center_list %}
+    {% for training_center in training_center_list %}
+      <h3>{{ training_center.name }}</h3>
+      <p>📌 {{ training_center.city }}</p>
+    {% endfor %}
+  {% else %}
+    <p>There are no training centers yet</p>
+  {% endif %}
+{% endblock %}
