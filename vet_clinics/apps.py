@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class VetClinicsConfig(AppConfig):
-    default_auto_field = "django.db.models.BigAutoField"
-    name = "vet_clinics"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'vet_clinics'
