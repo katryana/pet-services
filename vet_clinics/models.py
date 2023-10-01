@@ -30,6 +30,9 @@ class Service(models.Model):
     description = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=15, decimal_places=2)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class VetClinic(models.Model):
     name = models.CharField(max_length=63)
@@ -50,3 +53,6 @@ class Doctor(models.Model):
     vet_clinics = models.ForeignKey(
         VetClinic, on_delete=models.CASCADE, related_name="doctors"
     )
+
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name}"
