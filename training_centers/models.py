@@ -11,33 +11,55 @@ class User(AbstractUser):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
 
+class Breed(models.Model):
+    name = models.CharField(max_length=63)
+    description = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ("name", )
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Dog(models.Model):
     name = models.CharField(max_length=63)
     age = models.IntegerField()
-    breed = models.CharField(max_length=63)
+    breed = models.ForeignKey(
+        Breed,
+        on_delete=models.PROTECT,
+        related_name="dogs"
+    )
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="posts"
+        related_name="dogs"
     )
 
+    class Meta:
+        ordering = ("name",)
+
     def __str__(self) -> str:
-        return f"{self.breed}: {self.name}, {self.age}"
+        return f"{self.name}, owner: {self.owner}"
 
 
 class Service(models.Model):
     name = models.CharField(max_length=63)
     description = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=15, decimal_places=2)
+    breeds = models.ManyToManyField(Breed, related_name="services")
+
+    class Meta:
+        ordering = ("price",)
 
     def __str__(self) -> str:
         return self.name
 
 
-class VetClinic(models.Model):
+class TrainingCenter(models.Model):
     name = models.CharField(max_length=63)
     city = models.CharField(max_length=63)
-    services = models.ManyToManyField(Service, related_name="vet_clinics")
+    services = models.ManyToManyField(Service, related_name="training_centers")
 
     class Meta:
         ordering = ("name",)
@@ -46,12 +68,12 @@ class VetClinic(models.Model):
         return f"{self.name}"
 
 
-class Doctor(models.Model):
+class Specialist(models.Model):
     first_name = models.CharField(max_length=63)
     last_name = models.CharField(max_length=63)
-    services = models.ManyToManyField(Service, related_name="doctors")
-    vet_clinics = models.ForeignKey(
-        VetClinic, on_delete=models.CASCADE, related_name="doctors"
+    services = models.ManyToManyField(Service, related_name="specialists")
+    training_centers = models.ForeignKey(
+        TrainingCenter, on_delete=models.CASCADE, related_name="specialists"
     )
 
     def __str__(self) -> str:

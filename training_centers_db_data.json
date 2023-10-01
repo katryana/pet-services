@@ -1,0 +1,788 @@
+[
+  {
+    "model": "training_centers.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$j0cttxW8xUeXozCyybj5JP$CuBY6B+sHf8T8XZz25vkrH8+i/AyMQo1hB1KBbD5YPI=",
+      "last_login": "2022-08-08T14:14:03Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "Admin",
+      "last_name": "User",
+      "email": "admin@admin.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-08-08T13:58:29Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "joyce.byers",
+      "first_name": "Joyce",
+      "last_name": "Byers",
+      "email": "joyce.byers@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$QtPol3T7x9quBj4BnbnVwW$UwT4kihkRfSvQEWEeuqVKwMgis2ikKVZfJDBcQMvOKY=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jim.hopper",
+      "first_name": "Jim",
+      "last_name": "Hopper",
+      "email": "jim.hopper@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jonathan.byers",
+      "first_name": "Jonathan",
+      "last_name": "Byers",
+      "email": "jonathan.byers@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "dustin.henderson",
+      "first_name": "Dustin",
+      "last_name": "Henderson",
+      "email": "dustin.henderson@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "mike.wheeler",
+      "first_name": "Mike",
+      "last_name": "Wheeler",
+      "email": "mike.wheeler@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "lucas.sinclair",
+      "first_name": "Lucas",
+      "last_name": "Sinclair",
+      "email": "lucas.sinclair@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "nancy.wheeler",
+      "first_name": "Nancy",
+      "last_name": "Wheeler",
+      "email": "nancy.wheeler@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "martin.brenner",
+      "first_name": "Martin",
+      "last_name": "Brenner",
+      "email": "martin.brenner@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "billy.hargrove",
+      "first_name": "Billy",
+      "last_name": "Hargrove",
+      "email": "billy.hargrove@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.user",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "bob.newby",
+      "first_name": "Bob",
+      "last_name": "Newby",
+      "email": "bob.newby@taxi.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 1,
+    "fields": {
+      "name": "Labrador Retriever",
+      "description": "Friendly and outgoing, high-spirited, very agile."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 2,
+    "fields": {
+      "name": "German Shepherd",
+      "description": "Courageous, confident, and smart."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 3,
+    "fields": {
+      "name": "Golden Retriever",
+      "description": "Intelligent, friendly, and devoted."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 4,
+    "fields": {
+      "name": "Bulldog",
+      "description": "Docile, willful, friendly."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 5,
+    "fields": {
+      "name": "Poodle",
+      "description": "Intelligent, active, alert."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 6,
+    "fields": {
+      "name": "Beagle",
+      "description": "Friendly, curious, merry."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 7,
+    "fields": {
+      "name": "Rottweiler",
+      "description": "Confident, fearless, good-natured."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 8,
+    "fields": {
+      "name": "Yorkshire Terrier",
+      "description": "Affectionate, sprightly, tomboyish."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 9,
+    "fields": {
+      "name": "Boxer",
+      "description": "Fun-loving, bright, active."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 10,
+    "fields": {
+      "name": "Dachshund",
+      "description": "Clever, lively, and courageous."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 11,
+    "fields": {
+      "name": "Shih Tzu",
+      "description": "Outgoing, affectionate, playful."
+    }
+  },
+  {
+    "model": "training_centers.breed",
+    "pk": 12,
+    "fields": {
+      "name": "Siberian Husky",
+      "description": "Outgoing, gentle, and friendly."
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 1,
+    "fields": {
+      "name": "Buddy",
+      "age": 2,
+      "breed": 1,
+      "owner": 1
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 2,
+    "fields": {
+      "name": "Rex",
+      "age": 3,
+      "breed": 2,
+      "owner": 2
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 3,
+    "fields": {
+      "name": "Bailey",
+      "age": 1,
+      "breed": 3,
+      "owner": 3
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 4,
+    "fields": {
+      "name": "Charlie",
+      "age": 2,
+      "breed": 4,
+      "owner": 4
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 5,
+    "fields": {
+      "name": "Lola",
+      "age": 1,
+      "breed": 5,
+      "owner": 5
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 6,
+    "fields": {
+      "name": "Cooper",
+      "age": 3,
+      "breed": 6,
+      "owner": 6
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 7,
+    "fields": {
+      "name": "Rocky",
+      "age": 2,
+      "breed": 7,
+      "owner": 7
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 8,
+    "fields": {
+      "name": "Daisy",
+      "age": 1,
+      "breed": 8,
+      "owner": 8
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 9,
+    "fields": {
+      "name": "Max",
+      "age": 2,
+      "breed": 9,
+      "owner": 9
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 10,
+    "fields": {
+      "name": "Lucy",
+      "age": 3,
+      "breed": 10,
+      "owner": 10
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 11,
+    "fields": {
+      "name": "Molly",
+      "age": 1,
+      "breed": 11,
+      "owner": 11
+    }
+  },
+  {
+    "model": "training_centers.dog",
+    "pk": 12,
+    "fields": {
+      "name": "Hudson",
+      "age": 2,
+      "breed": 12,
+      "owner": 1
+    }
+  },
+  {
+    "model": "training_centers.service",
+    "pk": 1,
+    "fields": {
+      "name": "Basic Obedience Training",
+      "description": "Teaches fundamental commands and behavior control.",
+      "price": "99.99",
+      "breeds": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "training_centers.service",
+    "pk": 2,
+    "fields": {
+      "name": "Puppy Socialization Class",
+      "description": "Helps puppies develop social skills and manners.",
+      "price": "79.99",
+      "breeds": [1, 3, 5, 7, 9]
+    }
+  },
+  {
+    "model": "training_centers.service",
+    "pk": 3,
+    "fields": {
+      "name": "Advanced Agility Training",
+      "description": "Intense agility training for active breeds.",
+      "price": "129.99",
+      "breeds": [2, 4, 6, 8, 10]
+    }
+  },
+  {
+    "model": "training_centers.service",
+    "pk": 4,
+    "fields": {
+      "name": "Behavior Modification",
+      "description": "Addresses and corrects behavioral issues.",
+      "price": "149.99",
+      "breeds": [3, 5, 7, 9, 11]
+    }
+  },
+  {
+    "model": "training_centers.service",
+    "pk": 5,
+    "fields": {
+      "name": "Canine Fitness Program",
+      "description": "Promotes fitness and strength for all breeds.",
+      "price": "89.99",
+      "breeds": [1, 2, 4, 6, 8]
+    }
+  },
+  {
+    "model": "training_centers.service",
+    "pk": 6,
+    "fields": {
+      "name": "Therapy Dog Training",
+      "description": "Prepares dogs to become therapy animals.",
+      "price": "119.99",
+      "breeds": [2, 3, 5, 7, 9]
+    }
+  },
+  {
+    "model": "training_centers.service",
+    "pk": 7,
+    "fields": {
+      "name": "Aggressive Behavior Consultation",
+      "description": "Expert guidance for dealing with aggression.",
+      "price": "169.99",
+      "breeds": [4, 6, 8, 10, 12]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 1,
+    "fields": {
+      "name": "Paws & Play Training Center",
+      "city": "Kyiv",
+      "services": [1, 2, 3, 4, 5, 6]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 2,
+    "fields": {
+      "name": "Happy Tails Dog School",
+      "city": "Lviv",
+      "services": [2, 4, 6, 7]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 3,
+    "fields": {
+      "name": "Woof & Wag Training Academy",
+      "city": "Kharkiv",
+      "services": [1, 2, 3]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 4,
+    "fields": {
+      "name": "Bark Busters Canine Institute",
+      "city": "Odesa",
+      "services": [4, 5, 7]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 5,
+    "fields": {
+      "name": "Top Dog Training Center",
+      "city": "Dnipro",
+      "services": [1, 6, 7]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 6,
+    "fields": {
+      "name": "Puppy Love Dog School",
+      "city": "Kherson",
+      "services": [3, 5, 6]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 7,
+    "fields": {
+      "name": "Doggy Dojo Training Institute",
+      "city": "Kyiv",
+      "services": [2, 4]
+    }
+  },
+  {
+    "model": "training_centers.trainingcenter",
+    "pk": 8,
+    "fields": {
+      "name": "Canine Connection Academy",
+      "city": "Vinnytsia",
+      "services": [1, 2, 3, 6, 7]
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Smith",
+      "services": [1, 3, 5],
+      "training_centers": 1
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 9,
+    "fields": {
+      "first_name": "Matthew",
+      "last_name": "Miller",
+      "services": [1, 2, 4, 6],
+      "training_centers": 1
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 17,
+    "fields": {
+      "first_name": "James",
+      "last_name": "Lewis",
+      "services": [3, 6],
+      "training_centers": 1
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 3,
+    "fields": {
+      "first_name": "Michael",
+      "last_name": "Johnson",
+      "services": [2, 4, 7],
+      "training_centers": 2
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 11,
+    "fields": {
+      "first_name": "Daniel",
+      "last_name": "Thompson",
+      "services": [6, 7],
+      "training_centers": 2
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 19,
+    "fields": {
+      "first_name": "Joseph",
+      "last_name": "Adams",
+      "services": [1, 2, 3],
+      "training_centers": 3
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 2,
+    "fields": {
+      "first_name": "Emily",
+      "last_name": "Davis",
+      "services": [2],
+      "training_centers": 3
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 10,
+    "fields": {
+      "first_name": "Amanda",
+      "last_name": "Anderson",
+      "services": [2, 3],
+      "training_centers": 3
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 18,
+    "fields": {
+      "first_name": "Karen",
+      "last_name": "Taylor",
+      "services": [4, 5],
+      "training_centers": 4
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 4,
+    "fields": {
+      "first_name": "Jennifer",
+      "last_name": "Brown",
+      "services": [7],
+      "training_centers": 4
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 12,
+    "fields": {
+      "first_name": "Laura",
+      "last_name": "Walker",
+      "services": [5, 7],
+      "training_centers": 4
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 20,
+    "fields": {
+      "first_name": "Patricia",
+      "last_name": "Turner",
+      "services": [1, 6],
+      "training_centers": 5
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 5,
+    "fields": {
+      "first_name": "David",
+      "last_name": "Wilson",
+      "services": [7],
+      "training_centers": 5
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 13,
+    "fields": {
+      "first_name": "Robert",
+      "last_name": "Robinson",
+      "services": [1, 6, 7],
+      "training_centers": 5
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 21,
+    "fields": {
+      "first_name": "Richard",
+      "last_name": "Stewart",
+      "services": [6, 7],
+      "training_centers": 5
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 6,
+    "fields": {
+      "first_name": "Sarah",
+      "last_name": "Lee",
+      "services": [3, 5, 6],
+      "training_centers": 6
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 14,
+    "fields": {
+      "first_name": "Melissa",
+      "last_name": "Perez",
+      "services": [3, 5],
+      "training_centers": 6
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 22,
+    "fields": {
+      "first_name": "Nancy",
+      "last_name": "Bennett",
+      "services": [3, 6],
+      "training_centers": 6
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 7,
+    "fields": {
+      "first_name": "Christopher",
+      "last_name": "Evans",
+      "services": [2, 4],
+      "training_centers": 7
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 15,
+    "fields": {
+      "first_name": "William",
+      "last_name": "White",
+      "services": [2],
+      "training_centers": 7
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 23,
+    "fields": {
+      "first_name": "Paul",
+      "last_name": "Martin",
+      "services": [2, 6, 7],
+      "training_centers": 8
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 8,
+    "fields": {
+      "first_name": "Jessica",
+      "last_name": "Harris",
+      "services": [1, 3, 6],
+      "training_centers": 8
+    }
+  },
+  {
+    "model": "training_centers.specialist",
+    "pk": 16,
+    "fields": {
+      "first_name": "Linda",
+      "last_name": "Clark",
+      "services": [1, 3, 6, 7],
+      "training_centers": 8
+    }
+  }
+]
