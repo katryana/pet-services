@@ -4,7 +4,10 @@
   <h1>
     We have such training specialists
   </h1>
-
+  <form method="get" action="" class="form-inline">
+    {{ search_form.as_p }}
+    <input type="submit" class="btn btn-secondary" value="🔎">
+  </form>
   {% if specialist_list %}
     {% for specialist in specialist_list %}
       <h3>

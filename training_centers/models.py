@@ -10,12 +10,17 @@ class User(AbstractUser):
         ordering = ("username",)
 
     def __str__(self) -> str:
-        return f"{self.username} ({self.first_name} {self.last_name})"
+        return f"{self.id} {self.username} ({self.first_name} {self.last_name})"
 
 
 class Appointment(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="appointments"
+    )
+    training_center = models.ForeignKey(
+        "TrainingCenter",
         on_delete=models.CASCADE,
         related_name="appointments"
     )
@@ -40,8 +45,17 @@ class Appointment(models.Model):
         ]
         ordering = ("-visit_date", )
 
+    def clean(self):
+        super().clean()
+
+        if self.service not in self.training_center.services.all():
+            raise ValidationError("The selected service is not provided in the chosen training center.")
+
+        if self.specialist.training_centers != self.training_center:
+            raise ValidationError("The chosen specialist does not work in the selected training center.")
+
     def __str__(self) -> str:
-        return f"{self.user} {self.visit_date.strftime('%d-%m-%Y %H:%M')}"
+        return f"{self.id} user.id: {self.user} {self.visit_date.strftime('%d-%m-%Y %H:%M')}"
 
 
 class Breed(models.Model):
@@ -52,7 +66,7 @@ class Breed(models.Model):
         ordering = ("name", )
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.id} {self.name}"
 
 
 class Dog(models.Model):
@@ -73,7 +87,7 @@ class Dog(models.Model):
         ordering = ("name",)
 
     def __str__(self) -> str:
-        return f"{self.name}, owner: {self.owner}"
+        return f"{self.id} {self.name}, owner: {self.owner}"
 
 
 def validate_positive_price(value):
@@ -95,7 +109,7 @@ class Service(models.Model):
         ordering = ("price",)
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.id} {self.name}"
 
 
 class TrainingCenter(models.Model):
@@ -107,7 +121,7 @@ class TrainingCenter(models.Model):
         ordering = ("name",)
 
     def __str__(self) -> str:
-        return f"{self.name}"
+        return f"{self.id} {self.name}"
 
 
 class Specialist(models.Model):
@@ -131,4 +145,4 @@ class Specialist(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.id} {self.first_name} {self.last_name}"
