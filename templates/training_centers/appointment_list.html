@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Your appointments
+  </h1>
+
+  {% if appointment_list %}
+    {% for appointment in appointment_list %}
+      <h3>
+          {{ appointment.service }}
+      </h3>
+      <p>
+          Date: {{ appointment.visit_date.date }}
+      </p>
+      <p>
+          Time: {{ appointment.visit_date.time }}
+      </p>
+
+      <p>
+          Specialist: {{ appointment.specialist }} {{ appointment.specialist.phone_number }}
+      </p>
+    {% endfor %}
+  {% else %}
+    <p>You don't have any appointment yet</p>
+  {% endif %}
+{% endblock %}

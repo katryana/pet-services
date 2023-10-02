@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.views import generic
 
-from training_centers.models import TrainingCenter, Specialist, Service
+from training_centers.forms import AppointmentCreationForm
+from training_centers.models import TrainingCenter, Specialist, Service, Appointment
 
 
 def index(request):
@@ -28,19 +32,19 @@ class ServiceListView(generic.ListView):
     queryset = Service.objects.prefetch_related("breeds")
 
 
+class SpecialistListView(generic.ListView):
+    model = Specialist
+    paginate_by = 7
+    specialists = Specialist.objects.select_related("training_centers")
+    queryset = specialists.prefetch_related("services")
+
+
 class TrainingCenterListView(generic.ListView):
     model = TrainingCenter
     context_object_name = "training_center_list"
     template_name = "training_centers/training_center_list.html"
     paginate_by = 10
     queryset = TrainingCenter.objects.prefetch_related("services")
-
-
-class SpecialistListView(generic.ListView):
-    model = Specialist
-    paginate_by = 7
-    specialists = Specialist.objects.select_related("training_centers")
-    queryset = specialists.prefetch_related("services")
 
 
 class TrainingCenterDetailView(generic.DetailView):
@@ -55,3 +59,61 @@ class ServiceDetailView(generic.DetailView):
 
 class SpecialistDetailView(generic.DetailView):
     model = Specialist
+
+
+class AppointmentListView(LoginRequiredMixin, generic.ListView):
+    model = Appointment
+
+    def get_queryset(self):
+        user = self.request.user
+        return Appointment.objects.filter(user__id=user.id)
+
+
+class AppointmentDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Appointment
+    template_name = "training_centers/appointment_detail.html"
+    context_object_name = "appointment"
+
+    def get_object(self, queryset=None):
+        appointment = super().get_object(queryset)
+
+        required_id = appointment.user.id
+        user_id = self.request.user.id
+
+        if user_id != required_id:
+            raise Http404("You don't have permission to access this page")
+
+        return appointment
+
+
+class AppointmentCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Appointment
+    success_url = reverse_lazy("training-centers:appointment-list")
+    form_class = AppointmentCreationForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class AppointmentUpdateView(LoginRequiredMixin, generic.UpdateView):
+    success_url = reverse_lazy("training-centers:appointment-list")
+    form_class = AppointmentCreationForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+    def get_queryset(self):
+        user = self.request.user
+        return Appointment.objects.filter(user__id=user.id)
+
+
+class AppointmentDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Appointment
+    success_url = reverse_lazy("training-centers:appointment-list")
+
+    def get_queryset(self):
+        user = self.request.user
+        return Appointment.objects.filter(user__id=user.id)
