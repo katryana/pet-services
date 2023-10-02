@@ -1,11 +1,18 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
-from .models import User, Dog, TrainingCenter, Specialist, Service, Breed
-
+from .models import (
+    User, Dog, TrainingCenter, Specialist, Service, Breed, Appointment
+)
 
 admin.site.unregister(Group)
 admin.site.register(User)
+
+
+@admin.register(Appointment)
+class AppointmentAdmin(admin.ModelAdmin):
+    search_fields = ["visit_date", ]
+    list_filter = ["service", "specialist", ]
 
 
 @admin.register(Breed)

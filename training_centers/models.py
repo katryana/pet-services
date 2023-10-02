@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
 
 
@@ -9,6 +11,37 @@ class User(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"
+
+
+class Appointment(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="appointments"
+    )
+    specialist = models.ForeignKey(
+        "Specialist",
+        on_delete=models.CASCADE,
+        related_name="appointments"
+    )
+    service = models.ForeignKey(
+        "Service",
+        on_delete=models.CASCADE,
+        related_name="appointments"
+    )
+    visit_date = models.DateTimeField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["specialist", "visit_date"],
+                name="unique_appointment"
+            ),
+        ]
+        ordering = ("-visit_date", )
+
+    def __str__(self) -> str:
+        return f"{self.user} {self.visit_date.strftime('%d-%m-%Y %H:%M')}"
 
 
 class Breed(models.Model):
@@ -24,7 +57,7 @@ class Breed(models.Model):
 
 class Dog(models.Model):
     name = models.CharField(max_length=63)
-    age = models.IntegerField()
+    age = models.PositiveIntegerField()
     breed = models.ForeignKey(
         Breed,
         on_delete=models.PROTECT,
@@ -43,10 +76,19 @@ class Dog(models.Model):
         return f"{self.name}, owner: {self.owner}"
 
 
+def validate_positive_price(value):
+    if value <= 0:
+        raise ValidationError("Price must be greater than zero.")
+
+
 class Service(models.Model):
     name = models.CharField(max_length=63)
     description = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=15, decimal_places=2)
+    price = models.DecimalField(
+        max_digits=15,
+        decimal_places=2,
+        validators=[validate_positive_price]
+    )
     breeds = models.ManyToManyField(Breed, related_name="services")
 
     class Meta:
@@ -71,9 +113,18 @@ class TrainingCenter(models.Model):
 class Specialist(models.Model):
     first_name = models.CharField(max_length=63)
     last_name = models.CharField(max_length=63)
-    phone_number = models.CharField(max_length=15, blank=True)
+    phone_number = models.CharField(
+        max_length=15,
+        validators=[
+            RegexValidator(
+                regex=r'^\+?1?\d{9,15}$',
+                message="Phone number must be entered in the format:"
+                        " '+123456789'. Up to 15 digits allowed."
+            )
+        ]
+    )
     email_address = models.EmailField()
-    years_of_experience = models.IntegerField()
+    years_of_experience = models.PositiveIntegerField()
     services = models.ManyToManyField(Service, related_name="specialists")
     training_centers = models.ForeignKey(
         TrainingCenter, on_delete=models.CASCADE, related_name="specialists"

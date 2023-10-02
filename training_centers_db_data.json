@@ -853,5 +853,55 @@
       "training_centers": 8,
       "years_of_experience": 8
     }
+  },
+  {
+    "model": "training_centers.appointment",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "specialist": 1,
+      "service": 1,
+      "visit_date": "2023-10-10T09:00:00Z"
+    }
+  },
+  {
+    "model": "training_centers.appointment",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "specialist": 2,
+      "service": 3,
+      "visit_date": "2023-10-12T14:30:00Z"
+    }
+  },
+  {
+    "model": "training_centers.appointment",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "specialist": 3,
+      "service": 2,
+      "visit_date": "2023-10-15T11:15:00Z"
+    }
+  },
+  {
+    "model": "training_centers.appointment",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "specialist": 4,
+      "service": 4,
+      "visit_date": "2023-10-18T16:45:00Z"
+    }
+  },
+  {
+    "model": "training_centers.appointment",
+    "pk": 5,
+    "fields": {
+      "user": 4,
+      "specialist": 5,
+      "service": 6,
+      "visit_date": "2023-10-20T13:00:00Z"
+    }
   }
 ]
