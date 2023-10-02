@@ -28,7 +28,7 @@ urlpatterns = [
     path(
         "services/<int:pk>/",
         ServiceDetailView.as_view(),
-        name="training-center-detail"
+        name="service-detail"
     ),
     path(
         "specialists/<int:pk>/",

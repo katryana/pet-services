@@ -562,8 +562,10 @@
       "first_name": "John",
       "last_name": "Smith",
       "phone_number": "+380501234567",
+      "email_address": "john.smith@example.com",
       "services": [1, 3, 5],
-      "training_centers": 1
+      "training_centers": 1,
+      "years_of_experience": 5
     }
   },
   {
@@ -573,8 +575,10 @@
       "first_name": "Matthew",
       "last_name": "Miller",
       "phone_number": "+380502345678",
+      "email_address": "matthew.miller@example.com",
       "services": [1, 2, 4, 6],
-      "training_centers": 1
+      "training_centers": 1,
+      "years_of_experience": 8
     }
   },
   {
@@ -584,8 +588,10 @@
       "first_name": "James",
       "last_name": "Lewis",
       "phone_number": "+380503456789",
+      "email_address": "james.lewis@example.com",
       "services": [3, 6],
-      "training_centers": 1
+      "training_centers": 1,
+      "years_of_experience": 6
     }
   },
   {
@@ -595,8 +601,10 @@
       "first_name": "Michael",
       "last_name": "Johnson",
       "phone_number": "+380504567890",
+      "email_address": "michael.johnson@example.com",
       "services": [2, 4, 7],
-      "training_centers": 2
+      "training_centers": 2,
+      "years_of_experience": 7
     }
   },
   {
@@ -606,8 +614,10 @@
       "first_name": "Daniel",
       "last_name": "Thompson",
       "phone_number": "+380505678901",
+      "email_address": "daniel.thompson@example.com",
       "services": [6, 7],
-      "training_centers": 2
+      "training_centers": 2,
+      "years_of_experience": 6
     }
   },
   {
@@ -617,8 +627,10 @@
       "first_name": "Joseph",
       "last_name": "Adams",
       "phone_number": "+380506789012",
+      "email_address": "joseph.adams@example.com",
       "services": [1, 2, 3],
-      "training_centers": 3
+      "training_centers": 3,
+      "years_of_experience": 4
     }
   },
   {
@@ -628,8 +640,10 @@
       "first_name": "Emily",
       "last_name": "Davis",
       "phone_number": "+380507890123",
+      "email_address": "emily.davis@example.com",
       "services": [2],
-      "training_centers": 3
+      "training_centers": 3,
+      "years_of_experience": 3
     }
   },
   {
@@ -639,8 +653,10 @@
       "first_name": "Amanda",
       "last_name": "Anderson",
       "phone_number": "+380508901234",
+      "email_address": "amanda.anderson@example.com",
       "services": [2, 3],
-      "training_centers": 3
+      "training_centers": 3,
+      "years_of_experience": 5
     }
   },
   {
@@ -650,8 +666,10 @@
       "first_name": "Karen",
       "last_name": "Taylor",
       "phone_number": "+380509012345",
+      "email_address": "karen.taylor@example.com",
       "services": [4, 5],
-      "training_centers": 4
+      "training_centers": 4,
+      "years_of_experience": 6
     }
   },
   {
@@ -661,8 +679,10 @@
       "first_name": "Jennifer",
       "last_name": "Brown",
       "phone_number": "+380501234567",
+      "email_address": "jennifer.brown@example.com",
       "services": [7],
-      "training_centers": 4
+      "training_centers": 4,
+      "years_of_experience": 4
     }
   },
   {
@@ -672,8 +692,10 @@
       "first_name": "Laura",
       "last_name": "Walker",
       "phone_number": "+380502345678",
+      "email_address": "laura.walker@example.com",
       "services": [5, 7],
-      "training_centers": 4
+      "training_centers": 4,
+      "years_of_experience": 5
     }
   },
   {
@@ -683,8 +705,10 @@
       "first_name": "Patricia",
       "last_name": "Turner",
       "phone_number": "+380503456789",
+      "email_address": "patricia.turner@example.com",
       "services": [1, 6],
-      "training_centers": 5
+      "training_centers": 5,
+      "years_of_experience": 7
     }
   },
   {
@@ -694,8 +718,10 @@
       "first_name": "David",
       "last_name": "Wilson",
       "phone_number": "+380504567890",
+      "email_address": "david.wilson@example.com",
       "services": [7],
-      "training_centers": 5
+      "training_centers": 5,
+      "years_of_experience": 6
     }
   },
   {
@@ -705,8 +731,10 @@
       "first_name": "Robert",
       "last_name": "Robinson",
       "phone_number": "+380505678901",
+      "email_address": "robert.robinson@example.com",
       "services": [1, 6, 7],
-      "training_centers": 5
+      "training_centers": 5,
+      "years_of_experience": 8
     }
   },
   {
@@ -716,8 +744,10 @@
       "first_name": "Richard",
       "last_name": "Stewart",
       "phone_number": "+380506789012",
+      "email_address": "richard.stewart@example.com",
       "services": [6, 7],
-      "training_centers": 5
+      "training_centers": 5,
+      "years_of_experience": 7
     }
   },
   {
@@ -727,8 +757,10 @@
       "first_name": "Sarah",
       "last_name": "Lee",
       "phone_number": "+380507890123",
+      "email_address": "sarah.lee@example.com",
       "services": [3, 5, 6],
-      "training_centers": 6
+      "training_centers": 6,
+      "years_of_experience": 6
     }
   },
   {
@@ -738,8 +770,10 @@
       "first_name": "Melissa",
       "last_name": "Perez",
       "phone_number": "+380508901234",
+      "email_address": "melissa.perez@example.com",
       "services": [3, 5],
-      "training_centers": 6
+      "training_centers": 6,
+      "years_of_experience": 4
     }
   },
   {
@@ -749,8 +783,10 @@
       "first_name": "Nancy",
       "last_name": "Bennett",
       "phone_number": "+380509012345",
+      "email_address": "nancy.bennett@example.com",
       "services": [3, 6],
-      "training_centers": 6
+      "training_centers": 6,
+      "years_of_experience": 5
     }
   },
   {
@@ -760,8 +796,10 @@
       "first_name": "Christopher",
       "last_name": "Evans",
       "phone_number": "+380501234567",
+      "email_address": "christopher.evans@example.com",
       "services": [2, 4],
-      "training_centers": 7
+      "training_centers": 7,
+      "years_of_experience": 3
     }
   },
   {
@@ -771,8 +809,10 @@
       "first_name": "William",
       "last_name": "White",
       "phone_number": "+380502345678",
+      "email_address": "william.white@example.com",
       "services": [2],
-      "training_centers": 7
+      "training_centers": 7,
+      "years_of_experience": 4
     }
   },
   {
@@ -782,8 +822,10 @@
       "first_name": "Paul",
       "last_name": "Martin",
       "phone_number": "+380503456789",
+      "email_address": "paul.martin@example.com",
       "services": [2, 6, 7],
-      "training_centers": 8
+      "training_centers": 8,
+      "years_of_experience": 7
     }
   },
   {
@@ -793,8 +835,10 @@
       "first_name": "Jessica",
       "last_name": "Harris",
       "phone_number": "+380504567890",
+      "email_address": "jessica.harris@example.com",
       "services": [1, 3, 6],
-      "training_centers": 8
+      "training_centers": 8,
+      "years_of_experience": 8
     }
   },
   {
@@ -804,8 +848,10 @@
       "first_name": "Linda",
       "last_name": "Clark",
       "phone_number": "+380505678901",
+      "email_address": "linda.clark@example.com",
       "services": [1, 3, 6, 7],
-      "training_centers": 8
+      "training_centers": 8,
+      "years_of_experience": 8
     }
   }
 ]

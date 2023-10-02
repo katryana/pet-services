@@ -72,6 +72,8 @@ class Specialist(models.Model):
     first_name = models.CharField(max_length=63)
     last_name = models.CharField(max_length=63)
     phone_number = models.CharField(max_length=15, blank=True)
+    email_address = models.EmailField()
+    years_of_experience = models.IntegerField()
     services = models.ManyToManyField(Service, related_name="specialists")
     training_centers = models.ForeignKey(
         TrainingCenter, on_delete=models.CASCADE, related_name="specialists"

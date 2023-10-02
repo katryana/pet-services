@@ -5,13 +5,21 @@
     {{ specialist.first_name }} {{ specialist.last_name }}
   </h1>
 
-  <p><strong>Training center:</strong> {{ specialist.training_centers }}</p>
+  <p><strong>Training center:</strong>
+    <a class="detail-link" href="{% url 'training-centers:training-center-detail' specialist.training_centers.id %}">
+      {{ specialist.training_centers }}
+    </a>
+  </p>
 
   <h4>Fields of competence</h4>
   {% if specialist.services %}
     <ul>
       {% for service in specialist.services.all %}
-        <li><p>{{ service.name }}, price: {{ service.price }}</p></li>
+        <li><p>
+          <a class="detail-link" href="{% url 'training-centers:service-detail' service.id %}">
+            {{ service.name }}
+          </a>
+        </p></li>
       {% endfor %}
     </ul>
   {% else %}

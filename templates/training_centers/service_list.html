@@ -7,7 +7,9 @@
 
   {% if service_list %}
     {% for service in service_list %}
-      <h3>{{ service.name }}</h3>
+      <h3>
+        <a class="detail-link" href="{% url 'training-centers:service-detail' service.id %}">{{ service.name }}</a>
+      </h3>
       <p>Price {{ service.price }}</p>
       <p>{{ service.description }}</p>
     {% endfor %}

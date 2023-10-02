@@ -7,8 +7,16 @@
 
   {% if specialist_list %}
     {% for specialist in specialist_list %}
-      <h3>{{ specialist.first_name }} {{ specialist.last_name }}</h3>
-      <p>Works at {{ specialist.training_centers }}</p>
+      <h3>
+        <a class="detail-link" href="{% url 'training-centers:specialist-detail' specialist.id %}">
+          {{ specialist.first_name }} {{ specialist.last_name }}
+        </a>
+      </h3>
+      <p>Work experience of {{ specialist.years_of_experience }} years</p>
+      <p><strong>Contacts: </strong>
+        {{ specialist.phone_number }}<br>
+        {{ specialist.email_address }}
+      </p>
     {% endfor %}
   {% else %}
     <p>There are no specialists in our training centers yet</p>

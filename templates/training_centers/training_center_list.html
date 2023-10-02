@@ -7,7 +7,11 @@
 
   {% if training_center_list %}
     {% for training_center in training_center_list %}
-      <h3>{{ training_center.name }}</h3>
+      <h3>
+        <a class="detail-link" href="{% url 'training-centers:training-center-detail' training_center.id %}">
+          {{ training_center.name }}
+        </a>
+      </h3>
       <p>📌 {{ training_center.city }}</p>
     {% endfor %}
   {% else %}

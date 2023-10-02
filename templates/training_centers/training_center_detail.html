@@ -10,7 +10,11 @@
     <h4>This center provided such services</h4>
     <ul>
       {% for service in training_center.services.all %}
-        <li>{{ service }}</li>
+        <li>
+          <a class="detail-link" href="{% url 'training-centers:service-detail' service.id %}">
+            {{ service }}
+          </a>
+        </li>
       {% endfor %}
     </ul>
   {% else %}
@@ -21,8 +25,12 @@
     <h4>Our specialists:</h4>
     {% for specialist in training_center.specialists.all %}
         <hr>
-        <p><strong>{{ specialist.first_name }} {{ specialist.last_name }}</strong></p>
-        <p><strong>Contacts:</strong> {{ specialist.phone_number }}</p>
+        <p>
+          <a href="{% url 'training-centers:specialist-detail' specialist.id %}">
+            {{ specialist.first_name }} {{ specialist.last_name }}
+          </a>
+        </p>
+        <p>Work experience of {{ specialist.years_of_experience }} years</p>
 
     {% empty %}
       <p>We don't have any specialist yet</p>
