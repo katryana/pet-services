@@ -1,12 +1,39 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 
 from .models import (
-    User, Dog, TrainingCenter, Specialist, Service, Breed, Appointment
+    Dog,
+    TrainingCenter,
+    Specialist,
+    Service,
+    Breed,
+    Appointment
 )
 
 admin.site.unregister(Group)
-admin.site.register(User)
+
+
+@admin.register(get_user_model())
+class UserAdmin(admin.ModelAdmin):
+    list_display = UserAdmin.list_display + ("bio", "profile_image", )
+    fieldsets = UserAdmin.fieldsets + (
+        (("Additional info", {"fields": ("bio", "profile_image", )}),)
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (
+            (
+                "Additional info",
+                {
+                    "fields": (
+                        "bio",
+                        "profile_image",
+                    )
+                },
+            ),
+        )
+    )
 
 
 @admin.register(Appointment)

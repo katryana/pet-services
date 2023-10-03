@@ -6,6 +6,9 @@ from django.db import models
 
 
 class User(AbstractUser):
+    bio = models.TextField(null=True, blank=True)
+    profile_image = models.ImageField(null=True, blank=True, upload_to="images/profile/")
+
     class Meta:
         ordering = ("username",)
 
@@ -34,7 +37,8 @@ class Appointment(models.Model):
         on_delete=models.CASCADE,
         related_name="appointments"
     )
-    visit_date = models.DateTimeField()
+    visit_date = models.DateField()
+    visit_time = models.TimeField()
 
     class Meta:
         constraints = [
@@ -43,7 +47,7 @@ class Appointment(models.Model):
                 name="unique_appointment"
             ),
         ]
-        ordering = ("-visit_date", )
+        ordering = ("-visit_date", "-visit_time")
 
     def clean(self):
         super().clean()
@@ -72,6 +76,7 @@ class Breed(models.Model):
 class Dog(models.Model):
     name = models.CharField(max_length=63)
     age = models.PositiveIntegerField()
+    dog_image = models.ImageField(null=True, blank=True, upload_to="images/dog/")
     breed = models.ForeignKey(
         Breed,
         on_delete=models.PROTECT,

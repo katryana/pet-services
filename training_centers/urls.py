@@ -13,11 +13,13 @@ from .views import (
     AppointmentDetailView,
     AppointmentCreateView,
     AppointmentUpdateView,
-    DogListView
+    DogListView,
+    ProfileDetailView
 )
 
 
 urlpatterns = [
+    path("/accounts/<int:pk>/", ProfileDetailView.as_view(), name="profile-detail"),
     path("", index, name="index"),
     path(
         "appointments/",

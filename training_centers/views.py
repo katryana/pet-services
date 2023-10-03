@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import AppointmentCreationForm, SearchForm, CustomUserCreationForm
+from .forms import AppointmentCreationForm, SearchForm, CustomUserCreationForm, CustomUserUpdateForm
 from .models import TrainingCenter, Specialist, Service, Appointment, Dog
 
 
@@ -115,6 +115,26 @@ class TrainingCenterDetailView(generic.DetailView):
 
 class ServiceDetailView(generic.DetailView):
     model = Service
+
+
+class ProfileDetailView(LoginRequiredMixin, generic.UpdateView):
+    form_class = CustomUserUpdateForm
+    template_name = "training_centers/profile_detail.html"
+    context_object_name = "user"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        user_id = self.object.id
+
+        success_url = reverse_lazy("training-centers:profile-detail", args=[user_id])
+        return success_url
+
+    def get_queryset(self):
+        user = self.request.user
+        return get_user_model().objects.filter(id=user.id)
 
 
 class SpecialistDetailView(generic.DetailView):

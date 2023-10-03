@@ -43,6 +43,9 @@
                 <ul class="list-style-none mb-4">
                   {% if request.user.is_authenticated %}
                     <li class="mb-2 megamenu-item">
+                      <a class="megamenu-link" href="{% url 'training-centers:profile-detail' request.user.id %}">Profile</a>
+                    </li>
+                    <li class="mb-2 megamenu-item">
                       <a class="megamenu-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
                     </li>
                   {% else %}
