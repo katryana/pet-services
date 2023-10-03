@@ -76,7 +76,6 @@ class Breed(models.Model):
 class Dog(models.Model):
     name = models.CharField(max_length=63)
     age = models.PositiveIntegerField()
-    dog_image = models.ImageField(null=True, blank=True, upload_to="images/dog/")
     breed = models.ForeignKey(
         Breed,
         on_delete=models.PROTECT,

@@ -19,7 +19,7 @@ from .views import (
 
 
 urlpatterns = [
-    path("/accounts/<int:pk>/", ProfileDetailView.as_view(), name="profile-detail"),
+    path("accounts/<int:pk>/", ProfileDetailView.as_view(), name="profile-detail"),
     path("", index, name="index"),
     path(
         "appointments/",

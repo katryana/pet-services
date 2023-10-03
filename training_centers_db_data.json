@@ -241,7 +241,7 @@
     "model": "training_centers.breed",
     "pk": 6,
     "fields": {
-      "name": "Beagle",
+      "name": "Dalmatian",
       "description": "Friendly, curious, merry."
     }
   },
@@ -249,45 +249,21 @@
     "model": "training_centers.breed",
     "pk": 7,
     "fields": {
-      "name": "Rottweiler",
-      "description": "Confident, fearless, good-natured."
-    }
-  },
-  {
-    "model": "training_centers.breed",
-    "pk": 8,
-    "fields": {
       "name": "Yorkshire Terrier",
       "description": "Affectionate, sprightly, tomboyish."
     }
   },
   {
     "model": "training_centers.breed",
-    "pk": 9,
+    "pk": 8,
     "fields": {
-      "name": "Boxer",
-      "description": "Fun-loving, bright, active."
-    }
-  },
-  {
-    "model": "training_centers.breed",
-    "pk": 10,
-    "fields": {
-      "name": "Dachshund",
-      "description": "Clever, lively, and courageous."
-    }
-  },
-  {
-    "model": "training_centers.breed",
-    "pk": 11,
-    "fields": {
-      "name": "Shih Tzu",
+      "name": "Doberman",
       "description": "Outgoing, affectionate, playful."
     }
   },
   {
     "model": "training_centers.breed",
-    "pk": 12,
+    "pk": 9,
     "fields": {
       "name": "Siberian Husky",
       "description": "Outgoing, gentle, and friendly."
@@ -389,7 +365,7 @@
     "fields": {
       "name": "Lucy",
       "age": 3,
-      "breed": 10,
+      "breed": 1,
       "owner": 10
     }
   },
@@ -399,7 +375,7 @@
     "fields": {
       "name": "Molly",
       "age": 1,
-      "breed": 11,
+      "breed": 2,
       "owner": 11
     }
   },
@@ -409,7 +385,7 @@
     "fields": {
       "name": "Hudson",
       "age": 2,
-      "breed": 12,
+      "breed": 3,
       "owner": 1
     }
   },
