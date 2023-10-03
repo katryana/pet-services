@@ -1,39 +1,83 @@
-{% extends "base.html" %}
+{% extends 'layouts/base.html' %}
+{% load static %}
+
 
 {% block content %}
-  <h1>
-    {{ service.name }}
-  </h1>
+  <main>
+    {% include 'includes/pre-loader.html' %}
 
-  <p><strong>Price:</strong> {{ service.price }}</p>
-  {% if service.training_centers.all %}
-    <h4>You can get this service in such training center{{ service.training_centers.count|pluralize }}</h4>
-    <ul>
-      {% for training_center in service.training_centers.all %}
-        <li>
-          <a class="detail-link" href="{% url 'training-centers:training-center-detail' training_center.id %}">
-            {{ training_center.name }}
-          </a>
-          , city: {{ training_center.city }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>We don't have this service in any training center</p>
-  {% endif %}
-
-  <div class="ml-3">
-    <h4>Such specialist{{ service.specialists.count|pluralize }} provide this service:</h4>
-    {% for specialist in service.specialists.all %}
-        <hr>
-        <p>
-          <a class="detail-link" href="{% url 'training-centers:specialist-detail' specialist.id %}">
-            {{ specialist.first_name }} {{ specialist.last_name }}
-          </a>
-        </p>
-        <p>Work experience of {{ specialist.years_of_experience }} years</p>
-
-    {% empty %}
-      <p>We don't have any specialist in this field yet</p>
-    {% endfor %}
+<div class="section section-md">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow text-center">
+          <!-- Header -->
+          <div class="card-header bg-white p-3">
+            <h3 class="text-primary mb-4">{{ service.name }}</h3>
+            <span class="d-block">
+              <span class="display-1 text-dark fw-bold">
+                <span class="align-top font-medium">$</span>{{ service.price }}
+              </span>
+            </span>
+          </div>
+          <!-- End Header -->
+          <!-- Content -->
+          <div class="card-body">
+            <p>{{ service.description }}</p>
+          <br>
+            {% if service.breeds %}
+              <h5>For breeds:</h5>
+              <p class="font-small">{% for breed in service.breeds.all %}
+                <strong>|</strong> {{ breed.name.lower }}
+              {% endfor %}</p>
+            {% endif %}
+          </div>
+          <!-- End Content -->
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-md-7 mb-lg-0">
+        <div class="card border-0 overflow-hidden">
+          <div class="position-relative">
+           </div>
+          <div>
+            {% if service.specialists %}
+              <h4 class="text-center">Specialists</h4>
+              {% for specialist in service.specialists.all %}
+                <h3 class="h5 card-title">{{ specialist.first_name }} {{ specialist.last_name }}
+                  <a href="{% url 'training-centers:specialist-detail' specialist.id %}" class="btn btn-secondary btn-icon btn-sm">
+                    <span class="me-1" href="{% url 'training-centers:specialist-detail' specialist.id %}"><span class="far fa-user"></span></span>
+                    Learn more
+                  </a></h3>
+                <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>{{ specialist.training_centers }}</span>
+                <hr>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow">
+          <img src="{% static 'assets/img/training_centers/image-1.jpg' %}" class="card-img-top rounded-top"
+               alt="Training center">
+          <div>
+            {% if service.training_centers %}
+              <h4 class="text-center">Training centers</h4>
+              {% for training_center in service.training_centers.all %}
+                <h3 class="h5 card-title">{{ training_center.name }}</h3>
+                <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>{{ training_center.city }}</span>
+                <div class="btn-group">
+                  <a href="{% url 'training-centers:training-center-detail' training_center.id %}" class="btn btn-sm btn-outline-secondary btn-icon">
+                    Learn more
+                  </a>
+                </div>
+                <hr>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-{% endblock %}
+</div>
+  </main>
+{% endblock content %}

@@ -1,6 +1,8 @@
 from datetime import datetime
 
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
 from training_centers.models import Appointment, TrainingCenter, Specialist, Service
@@ -49,3 +51,12 @@ class SearchForm(forms.Form):
             }
         )
     )
+
+
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = get_user_model()
+        fields = UserCreationForm.Meta.fields + (
+            "email",
+        )

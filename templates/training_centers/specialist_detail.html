@@ -1,29 +1,56 @@
-{% extends "base.html" %}
+{% extends 'layouts/base.html' %}
+{% load static %}
+
 
 {% block content %}
-  <h1>
-    {{ specialist.first_name }} {{ specialist.last_name }}
-  </h1>
+  <main>
+    {% include 'includes/pre-loader.html' %}
 
-  <p><strong>Training center:</strong>
-    <a class="detail-link" href="{% url 'training-centers:training-center-detail' specialist.training_centers.id %}">
-      {{ specialist.training_centers }}
-    </a>
-  </p>
+{% load static %}
 
-  <h4>Fields of competence</h4>
-  {% if specialist.services %}
-    <ul>
-      {% for service in specialist.services.all %}
-        <li><p>
-          <a class="detail-link" href="{% url 'training-centers:service-detail' service.id %}">
-            {{ service.name }}
-          </a>
-        </p></li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>This specialist doesn't provide any service yet</p>
-  {% endif %}
-  <p><strong>Contacts:</strong> {{ specialist.phone_number }}</p>
-{% endblock %}
+<div class="section section-md">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-md-7 mb-lg-0">
+        <div class="card border-0 overflow-hidden">
+          <div class="position-relative">
+            <img src="{% static 'assets/img/team/profile-picture-3.jpg' %}" class="card-img-top" alt="Portrait">
+          </div>
+          <div class="card-body position-relative mt-n6 mx-2 bg-white border border-gray-300 text-center rounded">
+            <h3 class="h5 card-title">{{ specialist.first_name }} {{ specialist.last_name }}</h3>
+            <h4 class="h6 card-title">
+              Works at {{ specialist.training_centers.name }}
+            </h4>
+            <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>
+              {{ specialist.training_centers.city }}
+            </span>
+            <p class="mt-3">Work experience of {{ specialist.years_of_experience }} years</p>
+            <span aria-hidden="true" class="far fa-envelope"> {{ specialist.email_address }}</span>
+            {{ specialist.phone_number }}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow text-center">
+        <h3>Fields of competence</h3>
+        {% if specialist.services %}
+          {% for service in specialist.services.all %}
+            <h5 class="text-primary mb-4"><span class="text-dark fw-bold">
+              <span class="align-top font-small">$</span>{{ service.price }} </span>{{ service.name }}</h5>
+            <span class="d-block">
+              <a href="{% url 'training-centers:service-detail' service.id %}" class="btn btn-secondary btn-icon">
+                Learn more
+              </a>
+            </span>
+            <hr>
+           {% endfor %}
+          {% else %}
+          <p>This specialist doesn't provide any service yet.</p>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </main>
+{% endblock content %}

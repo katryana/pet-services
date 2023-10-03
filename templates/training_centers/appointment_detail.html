@@ -1,27 +1,40 @@
-{% extends "base.html" %}
+{% extends 'layouts/base.html' %}
+{% load static %}
 
 {% block content %}
-  <h1>
-    {{ appointment.service.name }}
-  </h1>
+  <main>
+    {% include 'includes/pre-loader.html' %}
+    <!-- Hero -->
+    <section class="section-header">
+        <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center">
+          <h1>{{ appointment.service.name }}</h1>
+          <p><strong>Price:</strong> {{ appointment.service.price }}$</p>
+          <p>
+            <strong> Training center: </strong>
+            {{ appointment.specialist.training_centers }}
+          </p>
+                      <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>{{ appointment.training_center.city }}</span>
+          <p>
+            Date: {{ appointment.visit_date.date }}
+            <br>
+            Time: {{ appointment.visit_date.time }}
+          </p>
+          <p>
+            <strong>Specialist:</strong> {{ appointment.specialist }}<br>
+            {{ appointment.specialist.phone_number }}<br>
+            {{ appointment.specialist.email_address }}
+          </p>
+      <div>
+        <a type="button" class="btn btn-gray" href="{% url 'training-centers:appointment-update' appointment.id %}" >Update</a>
+        <a type="button" class="btn btn-danger" href="{% url 'training-centers:appointment-delete' appointment.id %}">Delete</a>
+      </div>
+                      <br>
+        <a type="button" class="btn btn-outline-secondary" href="{% url 'training-centers:appointment-list' %}">Return to appointments</a>
 
-  <p><strong>Price:</strong> {{ appointment.service.price }}</p>
-  <p>
-  <strong>
-    Training center:
-  </strong>
-    {{ appointment.specialist.training_centers }}
-  </p>
-  <p>
-    Date: {{ appointment.visit_date.date }}
-    <br>
-    Time: {{ appointment.visit_date.time }}
-  </p>
+        </div>
 
-  <p>
-    <strong>Specialist:</strong> {{ appointment.specialist }}<br>
-    {{ appointment.specialist.phone_number }}<br>
-  {{ appointment.specialist.email_address }}
-  </p>
-
+        </div>
+    </section>
+  </main>
 {% endblock %}

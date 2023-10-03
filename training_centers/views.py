@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import Http404
@@ -5,8 +6,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from training_centers.forms import AppointmentCreationForm, SearchForm
-from training_centers.models import TrainingCenter, Specialist, Service, Appointment
+from .forms import AppointmentCreationForm, SearchForm, CustomUserCreationForm
+from .models import TrainingCenter, Specialist, Service, Appointment, Dog
 
 
 def index(request):
@@ -15,14 +16,23 @@ def index(request):
     num_training_centers = TrainingCenter.objects.count()
     num_services = Service.objects.count()
     num_specialists = Specialist.objects.count()
+    num_users = get_user_model().objects.count()
 
     context = {
         "num_training_centers": num_training_centers,
         "num_services": num_services,
         "num_specialists": num_specialists,
+        "num_users": num_users
     }
 
     return render(request, "training_centers/index.html", context=context)
+
+
+class UserCreateView(generic.CreateView):
+    model = get_user_model()
+    success_url = reverse_lazy("training-centers:index")
+    form_class = CustomUserCreationForm
+    template_name = "registration/register.html"
 
 
 class ServiceListView(generic.ListView):
@@ -51,7 +61,7 @@ class ServiceListView(generic.ListView):
 
 class SpecialistListView(generic.ListView):
     model = Specialist
-    paginate_by = 7
+    paginate_by = 3
     specialists = Specialist.objects.select_related("training_centers")
     queryset = specialists.prefetch_related("services")
 
@@ -111,8 +121,17 @@ class SpecialistDetailView(generic.DetailView):
     model = Specialist
 
 
+class DogListView(LoginRequiredMixin, generic.ListView):
+    model = Dog
+
+    def get_queryset(self):
+        user = self.request.user
+        return Dog.objects.filter(owner_id=user.id)
+
+
 class AppointmentListView(LoginRequiredMixin, generic.ListView):
     model = Appointment
+    paginate_by = 1
 
     def get_queryset(self):
         user = self.request.user
@@ -147,13 +166,17 @@ class AppointmentCreateView(LoginRequiredMixin, generic.CreateView):
 
 
 class AppointmentUpdateView(LoginRequiredMixin, generic.UpdateView):
-    success_url = reverse_lazy("training-centers:appointment-list")
     form_class = AppointmentCreationForm
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+    def get_success_url(self):
+        appointment_id = self.object.id
+
+        success_url = reverse_lazy("training-centers:appointment-detail", args=[appointment_id])
+        return success_url
 
     def get_queryset(self):
         user = self.request.user

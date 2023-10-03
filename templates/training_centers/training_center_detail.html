@@ -1,39 +1,80 @@
-{% extends "base.html" %}
+{% extends 'layouts/base.html' %}
+{% load static %}
+
 
 {% block content %}
-  <h1>
-    {{ training_center.name }}
-  </h1>
+  <main>
+    {% include 'includes/pre-loader.html' %}
 
-  <p><strong>City:</strong> {{ training_center.city }}</p>
-  {% if training_center.services.all %}
-    <h4>This center provided such services</h4>
-    <ul>
-      {% for service in training_center.services.all %}
-        <li>
-          <a class="detail-link" href="{% url 'training-centers:service-detail' service.id %}">
-            {{ service }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>We don't provide any services yet</p>
-  {% endif %}
+<div class="section section-md">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow text-center">
+          <img src="{% static 'assets/img/training_centers/image-1.jpg' %}" class="card-img-top rounded-top"
+               alt="Themesberg office">
+          <div>
+              <h4>{{ training_center.name }}</h4>
+                <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>{{ training_center.city }}</span>
+          </div>
+          <br>
+          <p>The Training Center for Dogs is a premier facility dedicated to helping dogs and their owners build strong,
+            positive relationships through effective training and socialization programs. Our experienced trainers use
+            science-based methods to address behavior challenges and ensure well-behaved, happy canine companions.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow text-center">
+        <h4>Our services</h4>
+        <br>
+        {% if training_center.services %}
+          {% for service in training_center.services.all %}
+            <h5 class="text-primary mb-4"><span class="text-dark fw-bold">
+              {{ service.name }}
+              <p class="font-small">{{ service.description }}
+              <span class="d-block">
+              <a href="{% url 'training-centers:service-detail' service.id %}" class="btn btn-sm btn-outline-secondary btn-icon">
+                Learn more
+              </a>
+              </span>
+              </p>
+              <hr>
+            </span>
+            </h5>
+           {% endfor %}
+        {% else %}
+          <p>This specialist doesn't provide any service yet.</p>
+        {% endif %}
+        </div>
+      </div>
 
-  <div class="ml-3">
-    <h4>Our specialists:</h4>
-    {% for specialist in training_center.specialists.all %}
-        <hr>
-        <p>
-          <a href="{% url 'training-centers:specialist-detail' specialist.id %}">
-            {{ specialist.first_name }} {{ specialist.last_name }}
-          </a>
-        </p>
-        <p>Work experience of {{ specialist.years_of_experience }} years</p>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-md-7 mb-lg-0">
+        <div class="card border-0 overflow-hidden">
+          <div class="position-relative">
+           </div>
+          <div>
+            {% if training_center.specialists %}
+              <h4 class="text-center">Out team</h4>
+              <br>
+              {% for specialist in training_center.specialists.all %}
+                <h3 class="h5 card-title">{{ specialist.first_name }} {{ specialist.last_name }}</h3>
+                <span class="text-gray">Work experience of {{ specialist.years_of_experience }} years</span>
+                <br>
+                <div class="btn-group">
+                  <a href="{% url 'training-centers:specialist-detail' specialist.id %}" class="btn btn-sm btn-secondary btn-icon">
+                    <span class="me-1" href="{% url 'training-centers:specialist-detail' specialist.id %}"><span class="far fa-user"></span></span>
+                    Learn more
+                  </a>
+                </div>
+                <hr>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
 
-    {% empty %}
-      <p>We don't have any specialist yet</p>
-    {% endfor %}
+    </div>
   </div>
-{% endblock %}
+</div>
+  </main>
+{% endblock content %}

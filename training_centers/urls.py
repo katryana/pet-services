@@ -12,34 +12,13 @@ from .views import (
     AppointmentListView,
     AppointmentDetailView,
     AppointmentCreateView,
-    AppointmentUpdateView
+    AppointmentUpdateView,
+    DogListView
 )
 
 
 urlpatterns = [
     path("", index, name="index"),
-    path("services/", ServiceListView.as_view(), name="service-list"),
-    path("specialists/", SpecialistListView.as_view(), name="specialist-list"),
-    path(
-        "training-centers/",
-        TrainingCenterListView.as_view(),
-        name="training-center-list"
-    ),
-    path(
-        "training-centers/<int:pk>/",
-        TrainingCenterDetailView.as_view(),
-        name="training-center-detail"
-    ),
-    path(
-        "services/<int:pk>/",
-        ServiceDetailView.as_view(),
-        name="service-detail"
-    ),
-    path(
-        "specialists/<int:pk>/",
-        SpecialistDetailView.as_view(),
-        name="specialist-detail"
-    ),
     path(
         "appointments/",
         AppointmentListView.as_view(),
@@ -58,12 +37,39 @@ urlpatterns = [
     path(
         "appointments/<int:pk>/update/",
         AppointmentUpdateView.as_view(),
-        name="appointment-delete",
+        name="appointment-update",
     ),
     path(
         "appointments/<int:pk>/delete/",
         AppointmentDeleteView.as_view(),
         name="appointment-delete",
+    ),
+    path(
+        "dogs/",
+        DogListView.as_view(),
+        name="dog-list",
+    ),
+    path("services/", ServiceListView.as_view(), name="service-list"),
+    path(
+        "services/<int:pk>/",
+        ServiceDetailView.as_view(),
+        name="service-detail"
+    ),
+    path("specialists/", SpecialistListView.as_view(), name="specialist-list"),
+    path(
+        "specialists/<int:pk>/",
+        SpecialistDetailView.as_view(),
+        name="specialist-detail"
+    ),
+    path(
+        "training-centers/",
+        TrainingCenterListView.as_view(),
+        name="training-center-list"
+    ),
+    path(
+        "training-centers/<int:pk>/",
+        TrainingCenterDetailView.as_view(),
+        name="training-center-detail"
     ),
 ]
 

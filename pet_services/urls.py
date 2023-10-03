@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from training_centers import views
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("training_centers.urls", namespace="training-centers")),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/register/", views.UserCreateView.as_view(), name="register"),
+    path("", include("theme_pixel.urls")),
 ]

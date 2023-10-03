@@ -1,27 +1,63 @@
-{% extends "base.html" %}
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
 
 {% block content %}
-  <h1>
-    We have such training specialists
-  </h1>
-  <form method="get" action="" class="form-inline">
-    {{ search_form.as_p }}
-    <input type="submit" class="btn btn-secondary" value="🔎">
-  </form>
-  {% if specialist_list %}
-    {% for specialist in specialist_list %}
-      <h3>
-        <a class="detail-link" href="{% url 'training-centers:specialist-detail' specialist.id %}">
-          {{ specialist.first_name }} {{ specialist.last_name }}
-        </a>
-      </h3>
-      <p>Work experience of {{ specialist.years_of_experience }} years</p>
-      <p><strong>Contacts: </strong>
-        {{ specialist.phone_number }}<br>
-        {{ specialist.email_address }}
-      </p>
-    {% endfor %}
-  {% else %}
-    <p>There are no specialists in our training centers yet</p>
-  {% endif %}
-{% endblock %}
+  <main>
+
+    {% include 'includes/pre-loader.html' %}
+
+    <!-- Section -->
+    <section class="section section-lg pt-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <br><h2>Our team</h2>
+            <p>These specialists work in our training centers!</p>
+          </div>
+          <!-- Form -->
+          <form method="get" action="" class="form-inline align-content-center">
+            {{ search_form|crispy }}
+            <input type="submit" class="btn btn-secondary align-left" value="Find by name or surname">
+          </form>
+          <!-- End of Form -->
+          {% if specialist_list %}
+            {% for specialist in specialist_list %}
+              <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="card border-0 text-center">
+                  <a class="detail-link" href="{% url 'training-centers:specialist-detail' specialist.id %}">
+                    <div class="card-header border-0 bg-white">
+                    {% if specialist.id == 1 %}
+                      <img src="{% static 'assets/img/team/profile-picture-2.jpg' %}" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
+                    {% elif specialist.id == 2 %}
+                      <img src="{% static 'assets/img/team/profile-picture-3.jpg' %}" class="card-img-top rounded shadow border-0" alt="Bonnie Avatar">
+                    {% else %}
+                      <img src="{% static 'assets/img/team/profile-picture-4.jpg' %}" class="card-img-top rounded shadow border-0" alt="Neil Avatar">
+                    {% endif %}
+                  </div>
+                  <div class="card-body">
+                    <h3>
+
+                        {{ specialist.first_name }} {{ specialist.last_name }}
+
+                    </h3>
+                  </a>
+                    <p>Work experience of {{ specialist.years_of_experience }} years</p>
+                    <p><strong>Contacts: <br></strong>
+                      <span class="fas fa-phone-volume"></span> {{ specialist.phone_number }}<br>
+                      <span class="far fa-paper-plane"></span> {{ specialist.email_address }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            {% else %}
+              <p>There are no specialists in our training centers yet</p>
+            {% endif %}
+
+            {% include "includes/pagination.html" %}      </div>
+      </div>
+    </section>
+    <!-- End of section -->
+  </main>
+{% endblock content %}
