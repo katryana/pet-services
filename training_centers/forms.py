@@ -44,9 +44,6 @@ class AppointmentCreationForm(forms.ModelForm):
         cleaned_data = super().clean()
         visit_date = cleaned_data.get("visit_date")
         visit_time = cleaned_data.get("visit_time")
-        training_center = cleaned_data.get("training_center")
-        service = cleaned_data.get("service")
-        specialist = cleaned_data.get("specialist")
 
         if visit_date and visit_time:
             visit_datetime = datetime.combine(visit_date, visit_time)
@@ -57,12 +54,6 @@ class AppointmentCreationForm(forms.ModelForm):
         if visit_time:
             if visit_time.hour < 8 or visit_time.hour > 19 or visit_time.minute != 0:
                 raise forms.ValidationError("Appointment time must be between 8:00 and 19:00 and have 00 minutes.")
-
-        if service and training_center and service not in training_center.services.all():
-            raise forms.ValidationError("The selected service is not provided in the chosen training center.")
-
-        if specialist and training_center and specialist.training_centers != training_center:
-            raise forms.ValidationError("The chosen specialist does not work in the selected training center.")
 
         return cleaned_data
 

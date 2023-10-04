@@ -58,6 +58,9 @@ class Appointment(models.Model):
         if self.specialist.training_centers != self.training_center:
             raise ValidationError("The chosen specialist does not work in the selected training center.")
 
+        if self.service not in self.specialist.services.all():
+            raise ValidationError("The chosen specialist does not work in the selected training center.")
+
     def __str__(self) -> str:
         return f"{self.user} {self.visit_date.strftime('%d-%m-%Y %H:%M')}"
 
@@ -65,7 +68,7 @@ class Appointment(models.Model):
 class Breed(models.Model):
     name = models.CharField(max_length=63)
     description = models.CharField(max_length=255)
-    breed_image = models.ImageField(default="static/assets/img/default_breed.png", upload_to="images/breeds/")
+    breed_image = models.ImageField(null=True, blank=True, upload_to="images/breeds/")
 
     class Meta:
         ordering = ("name", )
@@ -92,7 +95,7 @@ class Dog(models.Model):
         ordering = ("name",)
 
     def __str__(self) -> str:
-        return f"{self.name}, owner: {self.owner}"
+        return f"{self.name}, {self.breed}"
 
 
 def validate_positive_price(value):
