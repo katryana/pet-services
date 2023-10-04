@@ -5,19 +5,19 @@
   <main>
     {% include 'includes/pre-loader.html' %}
 
-    <section class="section-header">
+    <!-- Section -->
+    <section class="section section-lg pt-6">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 text-center">
-            <h1 class="display-2 mb-3">Breeds</h1>
-            <br>
-            {% if breed_list %}
-              <p>Our training centers work with such breeds</p>
-              {% for breed in breed_list %}
-                <div class="border-bottom px-4 py-5">
-                    <div class="row align-items-center">
-                      <div class="col-12 col-md-3 pb-3 pb-md-0">
-                        <p>{{ breed.name }}</p>
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <br><h2>Breeds</h2>
+            <p>Our training centers work with such breeds!</p>
+          </div>
+          {% if breed_list %}
+            {% for breed in breed_list %}
+              <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="card border-0 text-center">
+                    <div class="card-header border-0 bg-white">
                       {% if breed.breed_image %}
                         <img src="{{ breed.breed_image.url }}"
                              class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Breed image">
@@ -25,19 +25,24 @@
                         <img src="{% static 'assets/img/default_breed.png' %}"
                              class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Breed image">
                       {% endif %}
-                      </div>
-                      <div class="col-md-5 pb-2 pb-md-0">
-                        <h3 class="h5 mb-3">{{ breed.description}}</h3>
-                      </div>
-                    </div>
-                  </div>{% endfor %}
+                  </div>
+                  <div class="card-body">
+                    <h3>
+                      {{ breed.name }}
+                    </h3>
+                  </div>
+                    <p>{{ breed.description}}</p>
+                  </div>
+                </div>
+
+            {% endfor %}
             {% else %}
               <p>We don't work with any breeds yet.</p>
             {% endif %}
-          </div>
-          {% include "includes/pagination.html" %}
         </div>
+        {% include "includes/pagination.html" %}
       </div>
     </section>
+    <!-- End of section -->
   </main>
 {% endblock content %}

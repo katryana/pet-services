@@ -181,7 +181,7 @@ class TrainingCenterListView(generic.ListView):
     model = TrainingCenter
     context_object_name = "training_center_list"
     template_name = "training_centers/training_center_list.html"
-    paginate_by = 3
+    paginate_by = 2
     queryset = TrainingCenter.objects.prefetch_related("services")
 
     def get_context_data(self, *, object_list=None, **kwargs):

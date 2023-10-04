@@ -31,9 +31,7 @@
                   </div>
                   <div class="card-body">
                     <h3>
-
                         {{ specialist.first_name }} {{ specialist.last_name }}
-
                     </h3>
                   </div>
                   </a>
@@ -44,13 +42,13 @@
                     </p>
                   </div>
                 </div>
-              </div>
+
             {% endfor %}
             {% else %}
               <p>There are no specialists in our training centers yet</p>
             {% endif %}
-
-            {% include "includes/pagination.html" %}
+        </div>
+        {% include "includes/pagination.html" %}
       </div>
     </section>
     <!-- End of section -->
