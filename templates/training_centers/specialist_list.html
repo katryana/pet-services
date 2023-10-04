@@ -27,13 +27,7 @@
                 <div class="card border-0 text-center">
                   <a class="detail-link" href="{% url 'training-centers:specialist-detail' specialist.id %}">
                     <div class="card-header border-0 bg-white">
-                    {% if specialist.id == 1 %}
-                      <img src="{% static 'assets/img/team/profile-picture-2.jpg' %}" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
-                    {% elif specialist.id == 2 %}
-                      <img src="{% static 'assets/img/team/profile-picture-3.jpg' %}" class="card-img-top rounded shadow border-0" alt="Bonnie Avatar">
-                    {% else %}
-                      <img src="{% static 'assets/img/team/profile-picture-4.jpg' %}" class="card-img-top rounded shadow border-0" alt="Neil Avatar">
-                    {% endif %}
+                      <img src="{% static 'assets/img/team/profile.png' %}" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
                   </div>
                   <div class="card-body">
                     <h3>
@@ -41,6 +35,7 @@
                         {{ specialist.first_name }} {{ specialist.last_name }}
 
                     </h3>
+                  </div>
                   </a>
                     <p>Work experience of {{ specialist.years_of_experience }} years</p>
                     <p><strong>Contacts: <br></strong>
@@ -55,7 +50,7 @@
               <p>There are no specialists in our training centers yet</p>
             {% endif %}
 
-            {% include "includes/pagination.html" %}      </div>
+            {% include "includes/pagination.html" %}
       </div>
     </section>
     <!-- End of section -->

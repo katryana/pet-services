@@ -12,3 +12,6 @@ urlpatterns = [
     path("accounts/register/", views.UserCreateView.as_view(), name="register"),
     path("", include("theme_pixel.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "training_centers.views.handling_404"
+handler403 = "training_centers.views.handling_403"

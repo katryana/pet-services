@@ -1,5 +1,4 @@
 {% extends 'layouts/base.html' %}
-{% load crispy_forms_filters %}
 {% load static %}
 
 {% block content %}
@@ -11,15 +10,11 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-md-8 text-center">
-            <h1 class="display-2 mb-3">{{ object|yesno:"Update,Make" }} an Appointment</h1>
-            <form action="" method="post" novalidate>
-              {{ form|crispy }}
-              {% csrf_token %}
-              <input class="btn btn-primary" type="submit" value="Submit">
-            </form>
+            <h1 class="display-2 mb-3">404 Error</h1>
+            <img src="{% static 'assets/img/404.png' %}" alt="Not Today">
           </div>
         </div>
       </div>
     </section>
   </main>
-{% endblock %}
+{% endblock content %}

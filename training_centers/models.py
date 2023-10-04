@@ -43,7 +43,7 @@ class Appointment(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["specialist", "visit_date"],
+                fields=["specialist", "visit_date", "visit_time"],
                 name="unique_appointment"
             ),
         ]

@@ -1,28 +1,19 @@
 {% extends 'layouts/base.html' %}
-{% load crispy_forms_filters %}
 {% load static %}
 
 {% block content %}
   <main>
-
-  {% include 'includes/pre-loader.html' %}
-
-    <!-- Section -->
-    <div class="section section-lg bg-primary-app">
+    {% include 'includes/pre-loader.html' %}
+    <!-- Hero -->
+    <section class="section-header">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-12 col-md-8 text-center mb-5 mb-lg-6">
-            <h2 class="display-2 fw-bold">
-              Your appointment
-            </h2>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-10">
-            <div class="card bg-white border-gray-300">
-              {% if appointment_list %}
-                {% for appointment in appointment_list %}
-                  <div class="border-bottom px-4 py-5">
+          <div class="col-12 col-md-8 text-center">
+            <h1 class="display-2 mb-3">Your appointment</h1>
+            <br>
+            {% if appointment_list %}
+              {% for appointment in appointment_list %}
+                <div class="border-bottom px-4 py-5">
                     <div class="row align-items-center">
                       <div class="col-12 col-md-3 pb-3 pb-md-0">
                         <p>{{ appointment.visit_date }}</p>
@@ -35,16 +26,16 @@
                       <div class="col-md-4 text-md-right"><a href="{% url 'training-centers:appointment-detail' appointment.id %}" class="badge bg-primary">See more</a></div>
                     </div>
                   </div>{% endfor %}
-              {% else %}
-                <h5>You don't have appointments yet.</h5>
-                <div class="btn btn-secondary"><a href="{% url 'training-centers:appointment-create' %}" class="badge bg-primary">Make an Appointment</a></div>
-                    </div>
-              {% endif %}
-            </div>
+            {% else %}
+              <p>You don't have appointments yet.</p>
+              <div class="btn btn-secondary">
+                <a href="{% url 'training-centers:appointment-create' %}" class="text-white">Make an Appointment</a>
+              </div>
+            {% endif %}
           </div>
           {% include "includes/pagination.html" %}
         </div>
       </div>
-    </div>
+    </section>
   </main>
 {% endblock content %}

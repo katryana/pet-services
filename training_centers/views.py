@@ -28,6 +28,14 @@ def index(request):
     return render(request, "training_centers/index.html", context=context)
 
 
+def handling_404(request, exception=None):
+    return render(request, "404.html", status=404)
+
+
+def handling_403(request, exception=None):
+    return render(request, "403.html", status=403)
+
+
 class UserCreateView(generic.CreateView):
     model = get_user_model()
     success_url = reverse_lazy("training-centers:index")
