@@ -1,13 +1,20 @@
-from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model, login
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import AppointmentCreationForm, SearchForm, CustomUserCreationForm, CustomUserUpdateForm
-from .models import TrainingCenter, Specialist, Service, Appointment, Dog
+from .forms import AppointmentCreationForm, SearchForm, CustomUserCreationForm, CustomUserUpdateForm, BreedCreationForm, \
+    DogCreationForm
+from .models import TrainingCenter, Specialist, Service, Appointment, Dog, Breed
+
+
+class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 def index(request):
@@ -38,9 +45,19 @@ def handling_403(request, exception=None):
 
 class UserCreateView(generic.CreateView):
     model = get_user_model()
-    success_url = reverse_lazy("training-centers:index")
     form_class = CustomUserCreationForm
     template_name = "registration/register.html"
+
+    def get_success_url(self):
+        auth_user = self.object
+        remember_me = self.request.POST.get("remember_me")
+        if remember_me:
+            login(self.request, auth_user)
+        else:
+            pass
+
+        success_url = reverse_lazy("training-centers:index")
+        return success_url
 
 
 class ServiceListView(generic.ListView):
@@ -65,6 +82,75 @@ class ServiceListView(generic.ListView):
                 name__icontains=form.cleaned_data["search_field"]
             )
         return Service.objects.all()
+
+
+class BreedListView(generic.ListView):
+    model = Breed
+    paginate_by = 3
+    queryset = Breed.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search_input = self.request.GET.get("search_field", "")
+        context["search_form"] = SearchForm(
+            initial={"search_field": search_input}
+        )
+        return context
+
+
+class BreedCreateView(SuperUserRequiredMixin, generic.CreateView):
+    model = Breed
+    success_url = reverse_lazy("training-centers:breed-list")
+    form_class = BreedCreationForm
+
+
+class BreedUpdateView(SuperUserRequiredMixin, generic.UpdateView):
+    form_class = BreedCreationForm
+    success_url = reverse_lazy("training-centers:breed-list")
+
+
+class BreedDeleteView(SuperUserRequiredMixin, generic.DeleteView):
+    model = Breed
+    success_url = reverse_lazy("training-centers:breed-list")
+
+
+class DogCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dog
+    success_url = reverse_lazy("training-centers:dog-list")
+    form_class = DogCreationForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class DogUpdateView(LoginRequiredMixin, generic.UpdateView):
+    form_class = DogCreationForm
+    success_url = reverse_lazy("training-centers:dog-list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        appointment = super().get_object(queryset)
+
+        required_id = appointment.user.id
+        user_id = self.request.user.id
+
+        if user_id != required_id:
+            raise Http404("You don't have permission to access this page")
+
+        return appointment
+
+
+class DogDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Dog
+    success_url = reverse_lazy("training-centers:dog-list")
+
+    def get_queryset(self):
+        user = self.request.user
+        return Appointment.objects.filter(user__id=user.id)
 
 
 class SpecialistListView(generic.ListView):

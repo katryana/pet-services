@@ -5,7 +5,19 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
 
-from training_centers.models import Appointment
+from training_centers.models import Appointment, Breed, Dog
+
+
+class BreedCreationForm(forms.ModelForm):
+    class Meta:
+        model = Breed
+        fields = "__all__"
+
+
+class DogCreationForm(forms.ModelForm):
+    class Meta:
+        model = Dog
+        fields = "__all__"
 
 
 class AppointmentCreationForm(forms.ModelForm):
@@ -69,6 +81,11 @@ class SearchForm(forms.Form):
 
 
 class CustomUserCreationForm(UserCreationForm):
+    remember_me = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input hide-remember-me"})
+    )
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()

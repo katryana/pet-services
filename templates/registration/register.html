@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
 {% load static %}
 
 {% block header %}{% endblock header %}
@@ -16,25 +17,11 @@
               <div class="text-center text-md-center mb-4 mt-md-0">
                 <h1 class="mb-0 h3">Create an account</h1>
               </div>
-              <form method="post">
+              <form method="post" novalidate>
                 {% csrf_token %}
-                <!-- Form -->
-                {% for field in form %}
-                  <div class="form-group mb-4">
-                    <label for="email">{{ field.label }}</label>
-                    <div class="input-group">
-                      <span class="input-group-text" id="basic-addon3">
-                        <span class="fas {% if field.name == 'email' %} fa-envelope {% else %} {% if field.name == 'username' %} fa-user {% else %} fa-unlock-alt {% endif %} {% endif %}"></span>
-                      </span>
-                      {{ field }}
-                    </div>
-                  </div>
-                  <span class="text-danger"> {{ field.errors }} </span>
-                {% endfor %}
-                <!-- End of Form -->
-                <div class="d-grid">
+                {{ form|crispy }}
                   <button type="submit" class="btn btn-primary">Sign up</button>
-                </div>
+                  <a class="btn btn-outline-primary" href="{% url 'training-centers:index' %}">Return to Home Page</a>
               </form>
               <div class="d-flex justify-content-center align-items-center mt-4">
                 <span class="fw-normal">

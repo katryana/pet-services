@@ -14,12 +14,26 @@ from .views import (
     AppointmentCreateView,
     AppointmentUpdateView,
     DogListView,
-    ProfileDetailView
+    ProfileDetailView,
+    BreedListView,
+    BreedCreateView,
+    BreedUpdateView,
+    BreedDeleteView,
+    DogCreateView,
+    DogUpdateView,
+    DogDeleteView
 )
 
 
 urlpatterns = [
     path("accounts/<int:pk>/", ProfileDetailView.as_view(), name="profile-detail"),
+    path("breeds/", BreedListView.as_view(), name="breed-list"),
+    path("breeds/create/", BreedCreateView.as_view(), name="breed-create"),
+    path("breeds/<int:pk>/update/", BreedUpdateView.as_view(), name="breed-update"),
+    path("breeds/<int:pk>/delete/", BreedDeleteView.as_view(), name="breed-delete"),
+    path("dogs/create/", DogCreateView.as_view(), name="dog-create"),
+    path("dogs/<int:pk>/update/", DogUpdateView.as_view(), name="dog-update"),
+    path("dogs/<int:pk>/delete/", DogDeleteView.as_view(), name="dog-delete"),
     path("", index, name="index"),
     path(
         "appointments/",

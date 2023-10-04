@@ -65,6 +65,7 @@ class Appointment(models.Model):
 class Breed(models.Model):
     name = models.CharField(max_length=63)
     description = models.CharField(max_length=255)
+    breed_image = models.ImageField(default="static/assets/img/default_breed.png", upload_to="images/breeds/")
 
     class Meta:
         ordering = ("name", )

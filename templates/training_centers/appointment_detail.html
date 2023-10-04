@@ -4,7 +4,7 @@
 {% block content %}
   <main>
     {% include 'includes/pre-loader.html' %}
-    <!-- Hero -->
+
     <section class="section-header">
         <div class="row justify-content-center">
                     <div class="col-12 col-md-8 text-center">
@@ -25,16 +25,13 @@
             {{ appointment.specialist.phone_number }}<br>
             {{ appointment.specialist.email_address }}
           </p>
-      <div>
-        <a type="button" class="btn btn-gray" href="{% url 'training-centers:appointment-update' appointment.id %}" >Update</a>
-        <a type="button" class="btn btn-danger" href="{% url 'training-centers:appointment-delete' appointment.id %}">Delete</a>
+        <div>
+          <a type="button" class="btn btn-gray" href="{% url 'training-centers:appointment-update' appointment.id %}" >Update</a>
+          <a type="button" class="btn btn-danger" href="{% url 'training-centers:appointment-delete' appointment.id %}">Delete</a>
+        </div><br>
+          <a type="button" class="btn btn-outline-secondary" href="{% url 'training-centers:appointment-list' %}">Return to appointments</a>
+        </div>
       </div>
-                      <br>
-        <a type="button" class="btn btn-outline-secondary" href="{% url 'training-centers:appointment-list' %}">Return to appointments</a>
-
-        </div>
-
-        </div>
     </section>
   </main>
 {% endblock %}
