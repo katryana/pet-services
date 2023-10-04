@@ -1,13 +1,17 @@
 {% load static %}
 <header class="header-global bg-primary">
-  {% if request.path == "/landing-freelancer/" or request.path == "/blank/" %}
+  {% if request.path == "/blank/" %}
     <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light navbar-theme-secondary">
   {% else %}
     <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-dark navbar-theme-secondary">
   {% endif %}
+
   <div class="container position-relative">
+
     <a class="navbar-brand me-lg-5" href="/">Home</a>
-    <div class="navbar-collapse collapse me-auto" id="navbar_global">
+
+
+    <div class="d-flex align-items-center"><div class="" id="navbar_global">
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="frontPagesDropdown" aria-expanded="false" data-bs-toggle="dropdown">
@@ -20,10 +24,13 @@
                 <h6 class="d-block mb-3 text-primary">Main pages</h6>
                 <ul class="list-style-none mb-4">
                   <li class="mb-2 megamenu-item">
-                    <a class="megamenu-link" href="{% url 'about_us' %}">About</a>
+                    <a class="megamenu-link" href="{% url 'training-centers:training-center-list' %}">Training Centers</a>
                   </li>
                   <li class="mb-2 megamenu-item">
-                    <a class="megamenu-link" href="{% url 'contact_us' %}">Contact</a>
+                    <a class="megamenu-link" href="{% url 'training-centers:service-list' %}">Services</a>
+                  </li>
+                  <li class="mb-2 megamenu-item">
+                    <a class="megamenu-link" href="{% url 'training-centers:specialist-list' %}">Team</a>
                   </li>
                 </ul>
               </div>
@@ -63,10 +70,6 @@
         </li>
       </ul>
     </div>
-    <a class="navbar-brand me-lg-5" href="{% url 'training-centers:training-center-list' %}">Training Centers</a>
-    <a class="navbar-brand me-lg-5" href="{% url 'training-centers:specialist-list' %}">Team</a>
-    <a class="navbar-brand me-lg-5" href="{% url 'training-centers:service-list' %}">Services</a>
-    <div class="d-flex align-items-center">
       {% if request.user.is_authenticated %}
         <a href="{% url 'logout'%}?next={{request.path}}"
            class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-out-alt me-2"></span> Logout</a>
@@ -74,11 +77,8 @@
         <a href="{% url 'login'%}?next={{request.path}}"
            class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Log IN</a>
       {% endif %}
-      <a target="_blank" href="{% url 'training-centers:appointment-create' %}" class="btn btn-tertiary">Make an Appointment</a>
-      <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
+
   </div>
   {% if request.user.is_authenticated %}
     <a href="{% url 'training-centers:profile-detail' request.user.id %}">{% if request.user.profile_image %}
@@ -88,9 +88,6 @@
       <img src="{% static 'assets/img/profile-default.jpg' %}"
            class="rounded-circle image-sm border-gray-100 p-2" alt="Portrait">
     {% endif %}
-    </a>
-    <a href="{% url 'training-centers:profile-detail' request.user.id %}">
-      <p class="text-white-50">{{ request.user.username }}</p>
     </a>
   {% endif %}
   </nav>
