@@ -12,7 +12,11 @@
           <div class="col-12 text-center mb-5">
             <br><h2>Breeds</h2>
             <p>Our training centers work with such breeds!</p>
+            {% if request.user.is_staff %}
+              <a class="btn btn-primary" href="{% url 'training-centers:breed-create' %}">Add a breed</a>
+            {% endif %}
           </div>
+
           {% if breed_list %}
             {% for breed in breed_list %}
               <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
@@ -22,7 +26,7 @@
                         <img src="{{ breed.breed_image.url }}"
                              class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Breed image">
                       {% else %}
-                        <img src="{% static 'assets/img/default_breed.png' %}"
+                        <img src="{% static 'assets/img/breed-default.jpg' %}"
                              class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Breed image">
                       {% endif %}
                   </div>
@@ -30,6 +34,10 @@
                     <h3>
                       {{ breed.name }}
                     </h3>
+                    {% if request.user.is_staff %}
+                      <a class="btn btn-outline-primary btn-sm inline-group" href="{% url 'training-centers:breed-update' breed.id %}">Update</a>
+                      <a class="btn btn-outline-danger btn-sm inline-group" href="{% url 'training-centers:breed-delete' breed.id %}">Delete</a>
+                   {% endif %}
                   </div>
                     <p>{{ breed.description}}</p>
                   </div>

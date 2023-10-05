@@ -17,7 +17,7 @@ class BreedCreationForm(forms.ModelForm):
 class DogCreationForm(forms.ModelForm):
     class Meta:
         model = Dog
-        fields = "__all__"
+        fields = ("name", "age", "breed", )
 
 
 class AppointmentCreationForm(forms.ModelForm):
@@ -50,6 +50,9 @@ class AppointmentCreationForm(forms.ModelForm):
 
             if visit_datetime <= datetime.now():
                 raise forms.ValidationError("Appointment must be scheduled in the future.")
+
+            if visit_datetime.year > datetime.now().year + 1:
+                raise forms.ValidationError("Appointment must be scheduled in the current or following year.")
 
         if visit_time:
             if visit_time.hour < 8 or visit_time.hour > 19 or visit_time.minute != 0:

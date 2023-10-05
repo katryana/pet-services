@@ -12,12 +12,12 @@
         <div class="row">
           <div class="col-12 text-center mb-5">
             <br><h2>My pets</h2>
+            <a class="btn btn-primary" href="{% url 'training-centers:dog-create' %}">Add a dog</a>
           </div>
           {% if dog_list %}
             {% for dog in dog_list %}
               <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
                 <div class="card border-0 text-center">
-                  <a class="detail-link" href="{% url 'training-centers:specialist-detail' dog.id %}">
                     <div class="card-header border-0 bg-white">
                     {% if dog.id == 1 %}
                       <img src="{% static 'assets/img/dogs/labrador.jpg' %}" class="card-img-top rounded shadow border-0 image-lg" alt="Christopher Avatar">
@@ -29,10 +29,12 @@
                     <h3>
                         {{ dog.name }}
                     </h3>
-                  </a>
                     <p><strong>Age: {{ dog.age }}<br></strong></p>
                     <p><strong>Breed: </strong> {{ dog.breed }}
                      </p>
+                    <a class="btn btn-outline-primary btn-sm inline-group" href="{% url 'training-centers:dog-update' dog.id %}">Update</a>
+                    <a class="btn btn-outline-danger btn-sm inline-group" href="{% url 'training-centers:dog-delete' dog.id %}">Delete</a>
+
                   </div>
                 </div>
               </div>

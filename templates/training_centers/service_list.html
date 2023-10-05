@@ -10,46 +10,41 @@
     <!-- Section -->
     <div class="section section-lg bg-primary-app">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 text-center mb-5 mb-lg-6">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
             <h2 class="display-2 fw-bold">
               Our services
             </h2>
             <p class="lead">We provide such services in our training centers!</p>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-10">
-            <div class="card bg-white border-gray-300">
-              {% if service_list %}
-                <!-- Form -->
-                <form method="get" action="" class="form-inline align-content-center">
-          {{ search_form|crispy }}
-          <input type="submit" class="btn btn-secondary align-left" value="Find by name">
-        </form>
-                <br>
-                <!-- End of Form -->
-                {% for service in service_list %}
-                  <div class="border-bottom px-4 py-5">
-                    <div class="row align-items-center">
-                      <div class="col-12 col-md-3 pb-3 pb-md-0">
-                        <h2 class="h5">{{ service.price }}$</h2>
-                      </div>
-                      <div class="col-md-5 pb-2 pb-md-0">
-                        <h3 class="h5 mb-3">{{ service.name }}</h3>
-                        <p class="card-text py-4 mb-0">{{ service.description }}</p>
+          </div> {% if service_list %}
+          <!-- Form -->
+          <form method="get" action="" class="form-inline align-content-center">
+            {{ search_form|crispy }}
+            <input type="submit" class="btn btn-secondary align-left" value="Find by name">
+          </form>
+          <br>
+          <!-- End of Form --><div class="card bg-white border-gray-300">
 
-                      </div>
-                      <div class="col-md-4 text-md-right"><a href="{% url 'training-centers:service-detail' service.id %}" class="badge bg-primary">See more</a></div>
-                    </div>
-                  </div>{% endfor %}
-              {% else %}
-                <p class="lead">There are no services yet.</p>
-              {% endif %}
-            </div>
+          {% for service in service_list %}
+            <div class="border-bottom px-4 py-5">
+              <div class="row align-items-center">
+                <div class="col-12 col-md-3 pb-3 pb-md-0">
+                  <h2 class="h5">{{ service.price }}$</h2>
+                </div>
+                <div class="col-md-5 pb-2 pb-md-0">
+                  <h3 class="h5 mb-3">{{ service.name }}</h3>
+                  <p class="card-text py-4 mb-0">{{ service.description }}</p>
+
+                </div>
+                <div class="col-md-4 text-md-right"><a href="{% url 'training-centers:service-detail' service.id %}" class="badge bg-primary">See more</a></div>
+              </div>
+            </div>{% endfor %}
+        {% else %}
+          <p class="lead">There are no services yet.</p>
+        {% endif %}
           </div>
-          {% include "includes/pagination.html" %}
         </div>
+        {% include "includes/pagination.html" %}
       </div>
     </div>
   </main>

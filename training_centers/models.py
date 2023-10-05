@@ -44,7 +44,8 @@ class Appointment(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=["specialist", "visit_date", "visit_time"],
-                name="unique_appointment"
+                name="unique_appointment",
+                violation_error_message="The meeting with this specialist on this time has been already appointed."
             ),
         ]
         ordering = ("-visit_date", "-visit_time")
@@ -59,7 +60,7 @@ class Appointment(models.Model):
             raise ValidationError("The chosen specialist does not work in the selected training center.")
 
         if self.service not in self.specialist.services.all():
-            raise ValidationError("The chosen specialist does not work in the selected training center.")
+            raise ValidationError("The chosen specialist does not provide this service.")
 
     def __str__(self) -> str:
         return f"{self.user} {self.visit_date.strftime('%d-%m-%Y %H:%M')}"

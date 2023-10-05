@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import ValidationError
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render
@@ -105,6 +106,7 @@ class BreedCreateView(SuperUserRequiredMixin, generic.CreateView):
 
 
 class BreedUpdateView(SuperUserRequiredMixin, generic.UpdateView):
+    model = Breed
     form_class = BreedCreationForm
     success_url = reverse_lazy("training-centers:breed-list")
 
@@ -120,28 +122,29 @@ class DogCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = DogCreationForm
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.owner = self.request.user
         return super().form_valid(form)
 
 
 class DogUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Dog
     form_class = DogCreationForm
     success_url = reverse_lazy("training-centers:dog-list")
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.owner = self.request.user
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
-        appointment = super().get_object(queryset)
+        dog = super().get_object(queryset)
 
-        required_id = appointment.user.id
+        required_id = dog.owner.id
         user_id = self.request.user.id
 
         if user_id != required_id:
             raise Http404("You don't have permission to access this page")
 
-        return appointment
+        return dog
 
 
 class DogDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -150,7 +153,7 @@ class DogDeleteView(LoginRequiredMixin, generic.DeleteView):
 
     def get_queryset(self):
         user = self.request.user
-        return Appointment.objects.filter(user__id=user.id)
+        return Dog.objects.filter(owner=user)
 
 
 class SpecialistListView(generic.ListView):
@@ -273,6 +276,10 @@ class AppointmentCreateView(LoginRequiredMixin, generic.CreateView):
     model = Appointment
     success_url = reverse_lazy("training-centers:appointment-list")
     form_class = AppointmentCreationForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class AppointmentUpdateView(LoginRequiredMixin, generic.UpdateView):

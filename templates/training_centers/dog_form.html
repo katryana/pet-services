@@ -10,7 +10,14 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-md-8 text-center">
-            <h1 class="display-2 mb-3">{{ object|yesno:"Update,Make" }} a Pet</h1>
+            <h1 class="display-2 mb-3">{{ object|yesno:"Update,Add" }} a pet</h1>
+            {% if dog.breed.breed_image %}
+              <img src="{{ dog.breed.breed_image.url }}"
+                   class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Breed image">
+            {% else %}
+              <img src="{% static 'assets/img/breed-default.jpg' %}"
+                   class="rounded-circle img-thumbnail image-lg border-gray-300 p-2" alt="Breed image">
+            {% endif %}
             <form action="" method="post" novalidate>
               {{ form|crispy }}
               {% csrf_token %}
