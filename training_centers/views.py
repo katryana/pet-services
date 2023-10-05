@@ -263,7 +263,7 @@ class ServiceListView(generic.ListView):
         form = SearchForm(self.request.GET)
         if form.is_valid():
             return Service.objects.filter(
-                name__icontains=form.cleaned_data["search_field"]
+                name__icontains=form.cleaned_data["search_field"],
             )
         return Service.objects.all()
 
