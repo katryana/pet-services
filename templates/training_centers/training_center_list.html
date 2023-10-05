@@ -18,12 +18,14 @@
             <p class="lead">We established such training centers</p>
           </div>
         {% if training_center_list %}
-          <!-- Form -->
-          <form method="get" action="" class="form-inline align-content-center">
-                  {{ search_form|crispy }}
-                  <input type="submit" class="btn btn-secondary align-left" value="Find by city">
-                </form><br>
-          <!-- End of Form -->
+            <!-- Form -->
+            <form method="get" action="" >
+              <div class="inline-group col-12 text-center mb-5 ">{{ search_form.search_field }}
+                <input type="submit" class="btn-secondary" value="Find">
+              </div>
+            </form>
+            <br>
+            <!-- End of Form -->
           <div class="card bg-white border-gray-300">
           {% for training_center in training_center_list %}
                   <div class="border-bottom px-4 py-5">

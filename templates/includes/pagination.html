@@ -1,6 +1,6 @@
 {% load query_transform %}
 {% if is_paginated %}
-  <ul class="pagination align-content-center">
+  <ul class="pagination justify-content-xl-center">
     {% if page_obj.has_previous %}
       <li class="page-item">
         <a href="?{% query_transform request page=page_obj.previous_page_number %}" class="page-link"><span
@@ -13,7 +13,8 @@
     {% if page_obj.has_next %}
       <li class="page-item">
         <a href="?{% query_transform request page=page_obj.next_page_number %}" class="page-link"><span
-          class="fas fa-angle-double-right"></span></a></a>
+          class="fas fa-angle-double-right"></span>
+        </a>
       </li>
     {% endif %}
   </ul>

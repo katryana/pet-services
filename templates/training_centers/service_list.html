@@ -16,15 +16,18 @@
               Our services
             </h2>
             <p class="lead">We provide such services in our training centers!</p>
-          </div> {% if service_list %}
-          <!-- Form -->
-          <form method="get" action="" class="form-inline align-content-center">
-            {{ search_form|crispy }}
-            <input type="submit" class="btn btn-secondary align-left" value="Find by name">
-          </form>
-          <br>
-          <!-- End of Form --><div class="card bg-white border-gray-300">
 
+          </div>
+          {% if service_list %}
+            <!-- Form -->
+            <form method="get" action="" >
+              <div class="inline-group col-12 text-center mb-5 ">{{ search_form.search_field }}
+                <input type="submit" class="btn-secondary" value="Find">
+              </div>
+            </form>
+            <br>
+            <!-- End of Form -->
+          <div class="card bg-white border-gray-300">
           {% for service in service_list %}
             <div class="border-bottom px-4 py-5">
               <div class="row align-items-center">

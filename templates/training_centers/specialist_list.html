@@ -17,10 +17,12 @@
           </div>
           {% if specialist_list %}
             <!-- Form -->
-              <form method="get" action="" class="form-inline align-content-center">
-            {{ search_form|crispy }}
-            <input type="submit" class="btn btn-secondary align-left" value="Find by name or surname">
-          </form>
+            <form method="get" action="" >
+              <div class="inline-group col-12 text-center mb-5 ">{{ search_form.search_field }}
+                <input type="submit" class="btn-secondary" value="Find">
+              </div>
+            </form>
+            <br>
             <!-- End of Form -->
             {% for specialist in specialist_list %}
               <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
