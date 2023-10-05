@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
 {% load static %}
 
 {% block content %}
@@ -18,6 +19,12 @@
           </div>
 
           {% if breed_list %}
+            <!-- Form -->
+            <form method="get" action="" class="form-inline align-content-center">
+              {{ search_form|crispy }}
+              <input type="submit" class="btn btn-secondary align-left" value="Find">
+            </form>
+            <!-- End of Form -->
             {% for breed in breed_list %}
               <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
                 <div class="card border-0 text-center">

@@ -170,6 +170,14 @@ class BreedListView(generic.ListView):
         )
         return context
 
+    def get_queryset(self):
+        form = SearchForm(self.request.GET)
+        if form.is_valid():
+            return Breed.objects.filter(
+                name__icontains=form.cleaned_data["search_field"]
+            )
+        return Breed.objects.all()
+
 
 class BreedCreateView(SuperUserRequiredMixin, generic.CreateView):
     model = Breed
