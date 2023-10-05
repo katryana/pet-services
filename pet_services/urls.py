@@ -11,6 +11,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/register/", views.UserCreateView.as_view(), name="register"),
     path("", include("theme_pixel.urls")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "training_centers.views.handling_404"

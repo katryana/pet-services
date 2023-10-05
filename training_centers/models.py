@@ -5,6 +5,16 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 
+def validate_positive_price(value):
+    if value <= 0:
+        raise ValidationError("Price must be greater than zero.")
+
+
+def validate_years(value):
+    if value <= 0:
+        raise ValidationError("Years must be greater than zero.")
+
+
 class User(AbstractUser):
     bio = models.TextField(null=True, blank=True)
     profile_image = models.ImageField(
@@ -53,6 +63,7 @@ class Appointment(models.Model):
         ]
         ordering = ("-visit_date", "-visit_time")
 
+
     def clean(self):
         super().clean()
 
@@ -72,7 +83,7 @@ class Appointment(models.Model):
             )
 
     def __str__(self) -> str:
-        return f"{self.user} {self.visit_date.strftime('%d-%m-%Y %H:%M')}"
+        return f"{self.user} {self.visit_date.strftime('%d-%m-%Y')} {self.visit_time.strftime('%H:%M')}"
 
 
 class Breed(models.Model):
@@ -91,7 +102,7 @@ class Breed(models.Model):
 
 class Dog(models.Model):
     name = models.CharField(max_length=63)
-    age = models.PositiveIntegerField()
+    age = models.PositiveIntegerField(validators=[validate_years])
     breed = models.ForeignKey(
         Breed,
         on_delete=models.PROTECT,
@@ -107,12 +118,7 @@ class Dog(models.Model):
         ordering = ("name",)
 
     def __str__(self) -> str:
-        return f"{self.name}, {self.breed}"
-
-
-def validate_positive_price(value):
-    if value <= 0:
-        raise ValidationError("Price must be greater than zero.")
+        return f"{self.name}, {self.owner.username}"
 
 
 class Service(models.Model):
@@ -146,7 +152,7 @@ class Specialist(models.Model):
         ]
     )
     email_address = models.EmailField()
-    years_of_experience = models.PositiveIntegerField()
+    years_of_experience = models.PositiveIntegerField(validators=[validate_years])
     services = models.ManyToManyField(Service, related_name="specialists")
     training_centers = models.ForeignKey(
         "TrainingCenter", on_delete=models.CASCADE, related_name="specialists"
@@ -161,8 +167,9 @@ class Specialist(models.Model):
 
         training_center = TrainingCenter.objects.get(id=self.training_centers_id)
         for service in self.services.all():
-            if service not in  training_center.services:
+            if service not in training_center.services.all():
                 training_center.services.add(service)
+
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"

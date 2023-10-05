@@ -262,10 +262,14 @@ class ServiceListView(generic.ListView):
 
 class ServiceDetailView(generic.DetailView):
     model = Service
+    queryset = Service.objects.prefetch_related(
+        "training_centers", "specialists"
+    )
 
 
 class SpecialistDetailView(generic.DetailView):
     model = Specialist
+    queryset = Specialist.objects.prefetch_related("services").select_related("training_centers")
 
 
 class SpecialistListView(generic.ListView):
