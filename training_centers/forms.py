@@ -8,18 +8,6 @@ from django.contrib.auth.forms import UserCreationForm
 from training_centers.models import Appointment, Breed, Dog
 
 
-class BreedCreationForm(forms.ModelForm):
-    class Meta:
-        model = Breed
-        fields = "__all__"
-
-
-class DogCreationForm(forms.ModelForm):
-    class Meta:
-        model = Dog
-        fields = ("name", "age", "breed", )
-
-
 class AppointmentCreationForm(forms.ModelForm):
     visit_date = forms.DateField(
         widget=forms.DateInput(attrs={"type": "date"}),
@@ -49,36 +37,44 @@ class AppointmentCreationForm(forms.ModelForm):
             visit_datetime = datetime.combine(visit_date, visit_time)
 
             if visit_datetime <= datetime.now():
-                raise forms.ValidationError("Appointment must be scheduled in the future.")
+                raise forms.ValidationError(
+                    "Appointment must be scheduled in the future."
+                )
 
             if visit_datetime.year > datetime.now().year + 1:
-                raise forms.ValidationError("Appointment must be scheduled in the current or following year.")
+                raise forms.ValidationError(
+                    "Appointment must be scheduled in the current or following year."
+                )
 
         if visit_time:
             if visit_time.hour < 8 or visit_time.hour > 19 or visit_time.minute != 0:
-                raise forms.ValidationError("Appointment time must be between 8:00 and 19:00 and have 00 minutes.")
+                raise forms.ValidationError(
+                    "Appointment time must be between 8:00 and 19:00 "
+                    "and have 00 minutes."
+                )
 
         return cleaned_data
 
 
-class SearchForm(forms.Form):
-    search_field = forms.CharField(
-        max_length=255,
-        required=False,
-        label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search"
-            }
-        )
-    )
+class BreedCreationForm(forms.ModelForm):
+    class Meta:
+        model = Breed
+        fields = "__all__"
+
+
+class DogCreationForm(forms.ModelForm):
+    class Meta:
+        model = Dog
+        fields = ("name", "age", "breed", )
 
 
 class CustomUserCreationForm(UserCreationForm):
     remember_me = forms.BooleanField(
         required=False,
         initial=True,
-        widget=forms.CheckboxInput(attrs={"class": "form-check-input hide-remember-me"})
+        widget=forms.CheckboxInput(
+            attrs={"class": "form-check-input hide-remember-me"}
+        )
     )
 
     class Meta(UserCreationForm.Meta):
@@ -99,3 +95,16 @@ class CustomUserUpdateForm(forms.ModelForm):
             "email",
             "bio",
         )
+
+
+class SearchForm(forms.Form):
+    search_field = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search"
+            }
+        )
+    )

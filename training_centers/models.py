@@ -7,7 +7,9 @@ from django.db import models
 
 class User(AbstractUser):
     bio = models.TextField(null=True, blank=True)
-    profile_image = models.ImageField(null=True, blank=True, upload_to="images/profile/")
+    profile_image = models.ImageField(
+        null=True, blank=True, upload_to="images/profile/"
+    )
 
     class Meta:
         ordering = ("username",)
@@ -45,7 +47,8 @@ class Appointment(models.Model):
             models.UniqueConstraint(
                 fields=["specialist", "visit_date", "visit_time"],
                 name="unique_appointment",
-                violation_error_message="The meeting with this specialist on this time has been already appointed."
+                violation_error_message="The meeting with this specialist "
+                                        "on this time has been already appointed."
             ),
         ]
         ordering = ("-visit_date", "-visit_time")
@@ -54,13 +57,19 @@ class Appointment(models.Model):
         super().clean()
 
         if self.service not in self.training_center.services.all():
-            raise ValidationError("The selected service is not provided in the chosen training center.")
+            raise ValidationError(
+                "The selected service is not provided in the chosen training center."
+            )
 
         if self.specialist.training_centers != self.training_center:
-            raise ValidationError("The chosen specialist does not work in the selected training center.")
+            raise ValidationError(
+                "This specialist does not work in the selected training center."
+            )
 
         if self.service not in self.specialist.services.all():
-            raise ValidationError("The chosen specialist does not provide this service.")
+            raise ValidationError(
+                "The chosen specialist does not provide this service."
+            )
 
     def __str__(self) -> str:
         return f"{self.user} {self.visit_date.strftime('%d-%m-%Y %H:%M')}"
@@ -69,7 +78,9 @@ class Appointment(models.Model):
 class Breed(models.Model):
     name = models.CharField(max_length=63)
     description = models.CharField(max_length=255)
-    breed_image = models.ImageField(null=True, blank=True, upload_to="images/breeds/")
+    breed_image = models.ImageField(
+        null=True, blank=True, upload_to="images/breeds/"
+    )
 
     class Meta:
         ordering = ("name", )
@@ -121,18 +132,6 @@ class Service(models.Model):
         return self.name
 
 
-class TrainingCenter(models.Model):
-    name = models.CharField(max_length=63)
-    city = models.CharField(max_length=63)
-    services = models.ManyToManyField(Service, related_name="training_centers")
-
-    class Meta:
-        ordering = ("name",)
-
-    def __str__(self) -> str:
-        return self.name
-
-
 class Specialist(models.Model):
     first_name = models.CharField(max_length=63)
     last_name = models.CharField(max_length=63)
@@ -150,8 +149,32 @@ class Specialist(models.Model):
     years_of_experience = models.PositiveIntegerField()
     services = models.ManyToManyField(Service, related_name="specialists")
     training_centers = models.ForeignKey(
-        TrainingCenter, on_delete=models.CASCADE, related_name="specialists"
+        "TrainingCenter", on_delete=models.CASCADE, related_name="specialists"
     )
+
+    class Meta:
+        ordering = ("first_name",)
+
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        training_center = TrainingCenter.objects.get(id=self.training_centers_id)
+        for service in self.services.all():
+            if service not in  training_center.services:
+                training_center.services.add(service)
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
+
+
+class TrainingCenter(models.Model):
+    name = models.CharField(max_length=63)
+    city = models.CharField(max_length=63)
+    services = models.ManyToManyField(Service, related_name="training_centers")
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self) -> str:
+        return self.name

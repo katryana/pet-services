@@ -24,7 +24,7 @@
       "password": "pbkdf2_sha256$600000$j0cttxW8xUeXozCyybj5JP$CuBY6B+sHf8T8XZz25vkrH8+i/AyMQo1hB1KBbD5YPI=",
       "last_login": "2022-08-08T14:14:03Z",
       "is_superuser": false,
-      "username": "hiker_photog",
+      "username": "user",
       "first_name": "John",
       "last_name": "Doe",
       "email": "john@example.com",
@@ -447,7 +447,7 @@
     "fields": {
       "name": "Bentley",
       "age": 1,
-      "breed": 4,
+      "breed": 6,
       "owner": 11
     }
   },
@@ -457,7 +457,7 @@
     "fields": {
       "name": "Sophie",
       "age": 2,
-      "breed": 5,
+      "breed": 9,
       "owner": 12
     }
   },
@@ -637,7 +637,7 @@
       "phone_number": "+123456789",
       "email_address": "emma@pawsandplay.com",
       "years_of_experience": 5,
-      "services": [1, 2],
+      "services": [2, 7],
       "training_centers": 1
     }
   },
@@ -650,7 +650,7 @@
       "phone_number": "+987654321",
       "email_address": "liam@pawsandplay.com",
       "years_of_experience": 4,
-      "services": [3, 4],
+      "services": [8, 9],
       "training_centers": 1
     }
   },
@@ -663,7 +663,7 @@
       "phone_number": "+111222333",
       "email_address": "olivia@pawsandplay.com",
       "years_of_experience": 6,
-      "services": [1, 4, 5],
+      "services": [2, 7, 9],
       "training_centers": 1
     }
   },
@@ -676,7 +676,7 @@
       "phone_number": "+444555666",
       "email_address": "noah@pawsandplay.com",
       "years_of_experience": 3,
-      "services": [3, 5],
+      "services": [8],
       "training_centers": 1
     }
   },
@@ -689,7 +689,7 @@
       "phone_number": "+777888999",
       "email_address": "sophie@pawsandplay.com",
       "years_of_experience": 7,
-      "services": [1, 4],
+      "services": [2, 8],
       "training_centers": 1
     }
   },
@@ -728,7 +728,7 @@
       "phone_number": "+333444555",
       "email_address": "ethan@happytails.com",
       "years_of_experience": 6,
-      "services": [6, 9],
+      "services": [1, 6, 9],
       "training_centers": 2
     }
   },
@@ -741,7 +741,7 @@
       "phone_number": "+666777888",
       "email_address": "michael@happytails.com",
       "years_of_experience": 3,
-      "services": [6, 8],
+      "services": [1, 2, 8],
       "training_centers": 2
     }
   },
@@ -754,7 +754,7 @@
       "phone_number": "+444555666",
       "email_address": "sarah@happytails.com",
       "years_of_experience": 7,
-      "services": [7, 8],
+      "services": [2, 10],
       "training_centers": 2
     }
   },
@@ -793,7 +793,7 @@
       "phone_number": "+333444555",
       "email_address": "ava@petparadise.com",
       "years_of_experience": 6,
-      "services": [6, 7],
+      "services": [5, 7],
       "training_centers": 3
     }
   },
