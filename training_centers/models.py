@@ -118,7 +118,7 @@ class Dog(models.Model):
         ordering = ("name",)
 
     def __str__(self) -> str:
-        return f"{self.name}, {self.owner.username}"
+        return f"{self.name}"
 
 
 class Service(models.Model):
