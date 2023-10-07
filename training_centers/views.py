@@ -68,7 +68,6 @@ class UserCreateView(generic.CreateView):
 class ProfileDetailView(LoginRequiredMixin, generic.UpdateView):
     form_class = CustomUserUpdateForm
     template_name = "training_centers/profile_detail.html"
-    context_object_name = "user"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -96,8 +95,6 @@ class AppointmentListView(LoginRequiredMixin, generic.ListView):
 
 class AppointmentDetailView(LoginRequiredMixin, generic.DetailView):
     model = Appointment
-    template_name = "training_centers/appointment_detail.html"
-    context_object_name = "appointment"
 
     def get_object(self, queryset=None):
         appointment = super().get_object(queryset)
@@ -246,8 +243,6 @@ class DogListView(LoginRequiredMixin, generic.ListView):
 
 class ServiceListView(generic.ListView):
     model = Service
-    context_object_name = "service_list"
-    template_name = "training_centers/service_list.html"
     paginate_by = 3
     queryset = Service.objects.prefetch_related("breeds")
 

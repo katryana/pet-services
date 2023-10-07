@@ -2,21 +2,26 @@ from django.urls import path
 
 from .views import (
     index,
-
     ProfileDetailView,
-
-    AppointmentListView, AppointmentDetailView,
-    AppointmentCreateView, AppointmentUpdateView, AppointmentDeleteView,
-
-    BreedListView, BreedCreateView, BreedUpdateView, BreedDeleteView,
-
-    DogListView, DogCreateView, DogUpdateView, DogDeleteView,
-
-    ServiceListView, ServiceDetailView,
-
-    SpecialistListView, SpecialistDetailView,
-
-    TrainingCenterListView, TrainingCenterDetailView
+    AppointmentListView,
+    AppointmentDetailView,
+    AppointmentCreateView,
+    AppointmentUpdateView,
+    AppointmentDeleteView,
+    BreedListView,
+    BreedCreateView,
+    BreedUpdateView,
+    BreedDeleteView,
+    DogListView,
+    DogCreateView,
+    DogUpdateView,
+    DogDeleteView,
+    ServiceListView,
+    ServiceDetailView,
+    SpecialistListView,
+    SpecialistDetailView,
+    TrainingCenterListView,
+    TrainingCenterDetailView
 )
 
 urlpatterns = [

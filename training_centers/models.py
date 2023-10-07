@@ -63,7 +63,6 @@ class Appointment(models.Model):
         ]
         ordering = ("-visit_date", "-visit_time")
 
-
     def clean(self):
         super().clean()
 
@@ -83,7 +82,10 @@ class Appointment(models.Model):
             )
 
     def __str__(self) -> str:
-        return f"{self.user} {self.visit_date.strftime('%d-%m-%Y')} {self.visit_time.strftime('%H:%M')}"
+        return (
+            f"{self.user} {self.visit_date.strftime('%d-%m-%Y')}"
+            f" {self.visit_time.strftime('%H:%M')}"
+        )
 
 
 class Breed(models.Model):
@@ -161,7 +163,6 @@ class Specialist(models.Model):
     class Meta:
         ordering = ("first_name",)
 
-
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
@@ -169,7 +170,6 @@ class Specialist(models.Model):
         for service in self.services.all():
             if service not in training_center.services.all():
                 training_center.services.add(service)
-
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
