@@ -16,25 +16,22 @@ class AdminSiteTest(TestCase):
             first_name="Mary",
             last_name="Smith",
             password="test123user",
-            bio="smth about user",
             profile_image=""
         )
 
     def test_user_attributes_listed(self):
         """
-        Test that user's bio and profile image is
+        Test that user's profile image is
         in list_display on user admin page
         """
         url = reverse("admin:training_centers_user_changelist")
         res = self.client.get(url)
-        self.assertContains(res, self.user.bio)
         self.assertContains(res, self.user.profile_image)
 
     def test_user_detail_attributes_listed(self):
         """
-        Test that user's bio and profile image is on user detail admin page
+        Test that user's profile image is on user detail admin page
         """
         url = reverse("admin:training_centers_user_change", args=[self.user.id])
         res = self.client.get(url)
-        self.assertContains(res, self.user.bio)
         self.assertContains(res, self.user.profile_image)
