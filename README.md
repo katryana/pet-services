@@ -49,6 +49,6 @@ To run tests use this command ```python manage.py test ```
 
 Here you can find images of some pages
 
-![pet_services_home_page.png](..%2F..%2FPictures%2FScreenshots%2Fpet_services_home_page.png)
-![pet_services_breeds_staff.png](..%2F..%2FPictures%2FScreenshots%2Fpet_services_breeds_staff.png)
-![pet_services_profile_page.png](..%2F..%2FPictures%2FScreenshots%2Fpet_services_profile_page.png)
+[![pet_services_home_page.png](..%2F..%2FPictures%2FScreenshots%2Fpet_services_home_page.png)](https://monosnap.com/file/4JxKGJKM2GgwY4TTDBBLjNGDRUcdAu)
+[![pet_services_breeds_staff.png](..%2F..%2FPictures%2FScreenshots%2Fpet_services_breeds_staff.png)](https://monosnap.com/file/ZE31qBVvQMHSjxmRLCcrgdsWnBFiyP)
+[![pet_services_profile_page.png](..%2F..%2FPictures%2FScreenshots%2Fpet_services_profile_page.png)](https://monosnap.com/file/63mZCu9fenyCixj1KrOFqfzhytU07b)https://monosnap.com/file/63mZCu9fenyCixj1KrOFqfzhytU07b
