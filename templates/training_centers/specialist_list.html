@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+  <main>
+
+    {% include 'includes/pre-loader.html' %}
+
+    <!-- Section -->
+    <section class="section section-lg bg-primary-app">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <br><h2 class="display-2 fw-bold">Our team</h2>
+            <p>These specialists work in our training centers!</p>
+          </div>
+          {% if specialist_list %}
+            <!-- Form -->
+            <form method="get" action="" >
+              <div class="inline-group col-12 text-center mb-5 ">{{ search_form.search_field }}
+                <input type="submit" class="btn-secondary" value="Find">
+              </div>
+            </form>
+            <br>
+            <!-- End of Form -->
+            {% for specialist in specialist_list %}
+              <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="card border-0 text-center">
+                  <a class="detail-link" href="{% url 'training-centers:specialist-detail' specialist.id %}">
+                    <div class="card-header border-0 bg-white">
+                      <img src="{% static 'assets/img/team/profile.png' %}" class="card-img-top rounded shadow border-0" alt="Christopher Avatar">
+                  </div>
+                  <div class="card-body">
+                    <h3>
+                        {{ specialist.first_name }} {{ specialist.last_name }}
+                    </h3>
+                  </div>
+                  </a>
+                    <p>Work experience of {{ specialist.years_of_experience }} years</p>
+                    <p><strong>Contacts: <br></strong>
+                      <span class="fas fa-phone-volume"></span> {{ specialist.phone_number }}<br>
+                      <span class="far fa-paper-plane"></span> {{ specialist.email_address }}
+                    </p>
+                  </div>
+                </div>
+
+            {% endfor %}
+            {% else %}
+              <p>There are no specialists in our training centers yet</p>
+            {% endif %}
+        </div>
+        {% include "includes/pagination.html" %}
+      </div>
+    </section>
+    <!-- End of section -->
+  </main>
+{% endblock content %}

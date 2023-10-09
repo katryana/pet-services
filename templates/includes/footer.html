@@ -1,0 +1,94 @@
+{% load static %}
+
+<footer class="footer pt-6 pb-5 bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="navbar-brand-dark mb-4" height="35" src="{% static 'assets/img/brand/light.svg' %}"
+         alt="Logo light">
+        <p>Join us at Bark Care Training Centers and provide your pets with the proper training and care they deserve!</p>
+        <ul class="social-buttons mb-5 mb-lg-0">
+          <li>
+            <a href="https://twitter.com/" aria-label="twitter social link"
+               class="icon-white me-2">
+              <span class="fab fa-twitter"></span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/" class="icon-white me-2"
+               aria-label="facebook social link">
+              <span class="fab fa-facebook"></span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/" aria-label="github social link" class="icon-white me-2">
+              <span class="fab fa-github"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-2 mb-5 mb-lg-0">
+        <span class="h5">Bark Care</span>
+        <ul class="footer-links mt-2">
+          <li><a target="_blank" href="#">About Us</a></li>
+          <li><a target="_blank" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-4 mb-5 mb-lg-0">
+        <span class="h5">Appointment</span>
+        <p class="text-muted font-small mt-2">Schedule a visit at a convenient time. We write rarely to share details with you.
+        </p>
+        <form action="#">
+          <div class="form-row mb-2">
+            <div class="col-12 d-grid">
+
+      <a href="{% url 'training-centers:appointment-create' %}" class="btn btn-tertiary">Make an Appointment</a>
+            </div>
+          </div>
+        </form>
+        <p class="text-muted font-small m-0">We’ll never share your details. See our <a class="text-white"
+                      href="#">Privacy Policy</a></p>
+      </div>
+            <div class="col-6 col-md-2 mb-5 mb-lg-0">
+        <span class="h5">ACCOUNT</span><hr>
+        <ul class="footer-links mt-2">
+          {% if request.user.is_authenticated %}
+            <li class="mb-2 megamenu-item">
+              <a href="{% url 'training-centers:profile-detail' request.user.id %}">{% if request.user.profile_image %}
+                <img src="{{ request.user.profile_image.url }}" class="rounded-circle image-sm border-gray-100 p-2" alt="Profile image">
+              {% else %}
+                <img src="{% static 'assets/img/profile-default.jpg' %}" class="rounded-circle image-sm border-gray-100 p-2" alt="Portrait">
+              {% endif %}
+                {{ user.username }}
+              </a>
+              <a class="lead" href="{% url 'training-centers:profile-detail' request.user.id %}"></a>
+            </li><hr><br>
+            <li class="mb-2 megamenu-item">
+                      <a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3 "><span class="fas fa-sign-out-alt me-2"></span> Logout</a>
+                    </li>
+          {% else %}
+            <li class="mb-2 megamenu-item"><a href="{% url 'login'%}?next={{request.path}}"
+           class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Log IN</a>
+            </li><br>
+            <li class="mb-2 megamenu-item">
+                      <a class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3" href="{% url 'register'%}?next={{request.path}}"><span class="fas fa-sign-in-alt me-2"></span> Sign UP</a>
+                    </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <hr class="bg-secondary my-3 my-lg-5">
+    <div class="row">
+      <div class="col mb-md-0">
+        <a href="#" target="_blank" class="d-flex justify-content-center mb-3">
+          <img src="{% static 'assets/img/themesberg.svg' %}" height="30" class="me-2" alt="Themesberg Logo">
+          <p class="text-white fw-bold footer-logo-text m-0">Bark Care</p>
+        </a>
+        <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+          <p class="fw-normal font-small mb-0">
+            &copy; BARK CARE</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>

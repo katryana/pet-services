@@ -1,0 +1,61 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<main>
+
+  <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="fw-bolder display-2">BARK CARE</h1>
+          <h2 class="lead fw-normal text-muted mb-4 px-lg-10">
+            Network of training center for dogs
+          </h2>
+          <br>
+
+          <div class="container">
+            <div class="row justify-content-center mb-5 mb-lg-6">
+              <div class="col-6 col-md-3 text-center mb-4">
+                <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
+                  <img src="{% static 'assets/img/index/house.png' %}" alt="Training Service">
+                </div>
+                <h3 class="fw-bolder">{{ num_training_centers }}</h3>
+                <p class="text-white-50">training center{{ num_training_centers|pluralize }}</p>
+              </div>
+              <div class="col-6 col-md-3 text-center mb-4">
+                <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
+                  <img src="{% static 'assets/img/index/member.png' %}" alt="Member">
+                </div>
+                <h3 class="fw-bolder">{{ num_specialists }}</h3>
+                <p class="text-white-50">specialist{{ num_specialists|pluralize }} in our team</p>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
+                  <img src="{% static 'assets/img/index/tool.png' %}" alt="Tool">
+                </div>
+                <h3 class="fw-bolder">{{ num_services }}</h3>
+                <p class="text-white-50">service{{ num_services|pluralize }} providing by us</p>
+              </div>
+              <div class="col-6 col-md-3 text-center">
+                <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
+                  <img src="{% static 'assets/img/index/happy_dog.png' %}" alt="Dog">
+                </div>
+                <h3 class="fw-bolder">{{ num_users }}</h3>
+                <p class="text-white-50">happy client{{ num_users|pluralize }}</p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center flex-column mb-6 mb-lg-5">
+              <span class="text-muted font-small">
+                &copy; Pet Service
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+  <main>
+
+    <!-- Section -->
+    <section class="min-vh-100 d-flex align-items-center overlay-soft-dark" data-background="{% static 'assets/img/pages/form-image.jpg' %}">
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-300 p-4 p-lg-5 w-100 fmxw-500">
+              <div class="text-center text-md-center mb-4 mt-md-0">
+                <h1 class="mb-0 h3">Create an account</h1>
+              </div>
+              <form method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                  <button type="submit" class="btn btn-primary">Sign up</button>
+                  <a class="btn btn-outline-primary" href="{% url 'training-centers:index' %}">Return to Home Page</a>
+              </form>
+              <div class="d-flex justify-content-center align-items-center mt-4">
+                <span class="fw-normal">
+                  Already have an account?
+                  <a href="{% url 'login' %}" class="fw-bold text-underline">Login here</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

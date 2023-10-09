@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <main>
+    {% include 'includes/pre-loader.html' %}
+
+<div class="section section-md">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow text-center">
+          <img src="{% static 'assets/img/training_centers/image-1.jpg' %}" class="card-img-top rounded-top"
+               alt="Training Center">
+          <div>
+              <h4>{{ training_center.name }}</h4>
+                <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>{{ training_center.city }}</span>
+          </div>
+          <br>
+          <p>The Training Center for Dogs is a premier facility dedicated to helping dogs and their owners build strong,
+            positive relationships through effective training and socialization programs. Our experienced trainers use
+            science-based methods to address behavior challenges and ensure well-behaved, happy canine companions.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow text-center">
+        <h4>Our services</h4>
+        <br>
+        {% if training_center.services %}
+          {% for service in training_center.services.all %}
+            <h5 class="text-primary mb-4"><span class="text-dark fw-bold">
+              {{ service.name }}
+              <p class="font-small">{{ service.description }}
+              <span class="d-block">
+              <a href="{% url 'training-centers:service-detail' service.id %}" class="btn btn-sm btn-outline-secondary btn-icon">
+                Learn more
+              </a>
+              </span>
+              </p>
+              <hr>
+            </span>
+            </h5>
+           {% endfor %}
+        {% else %}
+          <p>This specialist doesn't provide any service yet.</p>
+        {% endif %}
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-md-7 mb-lg-0">
+        <div class="card border-0 overflow-hidden">
+          <div class="position-relative">
+           </div>
+          <div>
+            {% if training_center.specialists %}
+              <h4 class="text-center">Out team</h4>
+              <br>
+              {% for specialist in training_center.specialists.all %}
+                <h3 class="h5 card-title">{{ specialist.first_name }} {{ specialist.last_name }}</h3>
+                <span class="text-gray">Work experience of {{ specialist.years_of_experience }} years</span>
+                <br>
+                <div class="btn-group">
+                  <a href="{% url 'training-centers:specialist-detail' specialist.id %}" class="btn btn-sm btn-secondary btn-icon">
+                    <span class="me-1" href="{% url 'training-centers:specialist-detail' specialist.id %}"><span class="far fa-user"></span></span>
+                    Learn more
+                  </a>
+                </div>
+                <hr>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  </main>
+{% endblock content %}

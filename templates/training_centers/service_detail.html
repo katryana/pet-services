@@ -1,0 +1,83 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <main>
+    {% include 'includes/pre-loader.html' %}
+
+<div class="section section-md">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow text-center">
+          <!-- Header -->
+          <div class="card-header bg-white p-3">
+            <h3 class="text-primary mb-4">{{ service.name }}</h3>
+            <span class="d-block">
+              <span class="display-1 text-dark fw-bold">
+                <span class="align-top font-medium">$</span>{{ service.price }}
+              </span>
+            </span>
+          </div>
+          <!-- End Header -->
+          <!-- Content -->
+          <div class="card-body">
+            <p>{{ service.description }}</p>
+          <br>
+            {% if service.breeds %}
+              <h5>For breeds:</h5>
+              <p class="font-small">{% for breed in service.breeds.all %}
+                <strong>|</strong> {{ breed.name.lower }}
+              {% endfor %}</p>
+            {% endif %}
+          </div>
+          <!-- End Content -->
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-md-7 mb-lg-0">
+        <div class="card border-0 overflow-hidden">
+          <div class="position-relative">
+           </div>
+          <div>
+            {% if service.specialists %}
+              <h4 class="text-center">Specialists</h4>
+              {% for specialist in service.specialists.all %}
+                <h3 class="h5 card-title">{{ specialist.first_name }} {{ specialist.last_name }}
+                  <a href="{% url 'training-centers:specialist-detail' specialist.id %}" class="btn btn-secondary btn-icon btn-sm">
+                    <span class="me-1" href="{% url 'training-centers:specialist-detail' specialist.id %}"><span class="far fa-user"></span></span>
+                    Learn more
+                  </a></h3>
+                <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>{{ specialist.training_centers }}</span>
+                <hr>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow">
+          <img src="{% static 'assets/img/training_centers/image-1.jpg' %}" class="card-img-top rounded-top"
+               alt="Training center">
+          <div>
+            {% if service.training_centers %}
+              <h4 class="text-center">Training centers</h4>
+              {% for training_center in service.training_centers.all %}
+                <h3 class="h5 card-title">{{ training_center.name }}</h3>
+                <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>{{ training_center.city }}</span>
+                <div class="btn-group">
+                  <a href="{% url 'training-centers:training-center-detail' training_center.id %}" class="btn btn-sm btn-outline-secondary btn-icon">
+                    Learn more
+                  </a>
+                </div>
+                <hr>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </main>
+{% endblock content %}

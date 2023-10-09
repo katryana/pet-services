@@ -1,0 +1,61 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+  <main>
+
+  {% include 'includes/pre-loader.html' %}
+
+    <!-- Section -->
+    <div class="section section-lg bg-primary-app">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <h2 class="display-2 fw-bold">
+              Training Centers
+            </h2>
+            <p class="lead">We established such training centers</p>
+          </div>
+        {% if training_center_list %}
+            <!-- Form -->
+            <form method="get" action="" >
+              <div class="inline-group col-12 text-center mb-5 ">{{ search_form.search_field }}
+                <input type="submit" class="btn-secondary" value="Find">
+              </div>
+            </form>
+            <br>
+            <!-- End of Form -->
+          <div class="card bg-white border-gray-300">
+          {% for training_center in training_center_list %}
+                  <div class="border-bottom px-4 py-5">
+                    <div class="row align-items-center">
+                      <div class="col-12 col-md-3 pb-3 pb-md-0">
+                        <h2 class="h5"><span class="fas fa-map-marker-alt"></span> {{ training_center.city }}</h2>
+                      </div>
+                      <div class="col-md-5 pb-2 pb-md-0">
+                        <h3 class="h5 mb-3">{{ training_center.name }}</h3>
+                        <p class="card-text py-4 mb-0">Mon - Fri, 8am - 7pm</p>
+                        <span class="d-block mt-3">
+                          <span class="star fas fa-star text-warning"></span>
+                          <span class="star fas fa-star text-warning"></span>
+                          <span class="star fas fa-star text-warning"></span>
+                          <span class="star fas fa-star text-warning"></span>
+                          {% if training_center.id == 1 or training_center.id == 8 %}
+                          <span class="star fas fa-star text-warning"></span>
+                          {% endif %}
+                        </span>
+                      </div>
+                      <div class="col-md-4 text-md-right"><a href="{% url 'training-centers:training-center-detail' training_center.id %}" class="badge bg-primary">See more</a></div>
+                    </div>
+                  </div>{% endfor %}
+        {% else %}
+          <p class="lead">There are no training centers yet.</p>
+        {% endif %}
+          </div>
+          {% include "includes/pagination.html" %}
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}
