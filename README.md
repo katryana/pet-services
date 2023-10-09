@@ -31,7 +31,7 @@ Create your own superuser to test admin features or use these credentials:
 
 username: ``` admin ``` 
 password: ```n5d5ved&84```
-
+public
 You can sign up to the site to see the difference between staff and ordinary users
 
 ## Running the tests
