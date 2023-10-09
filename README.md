@@ -21,7 +21,6 @@ venv\Scripts\activate (on Windows)
 source venv/bin/activate (on macOS)
 pip install -r requirements.txt
 python manage.py runserver  # starts Django Server
-python manage.py collectstatic  # joins pages design
 ```
 
 ## Filling out the data
