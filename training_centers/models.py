@@ -107,7 +107,7 @@ class Dog(models.Model):
     age = models.PositiveIntegerField(validators=[validate_years])
     breed = models.ForeignKey(
         Breed,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name="dogs"
     )
     owner = models.ForeignKey(
