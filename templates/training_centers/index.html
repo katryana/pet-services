@@ -18,25 +18,31 @@
           <div class="container">
             <div class="row justify-content-center mb-5 mb-lg-6">
               <div class="col-6 col-md-3 text-center mb-4">
+                <a href="{% url 'training-centers:training-center-list' %}">
                 <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
                   <img src="{% static 'assets/img/index/house.png' %}" alt="Training Service">
                 </div>
                 <h3 class="fw-bolder">{{ num_training_centers }}</h3>
                 <p class="text-white-50">training center{{ num_training_centers|pluralize }}</p>
+                </a>
               </div>
               <div class="col-6 col-md-3 text-center mb-4">
+                <a href="{% url 'training-centers:specialist-list' %}">
                 <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
                   <img src="{% static 'assets/img/index/member.png' %}" alt="Member">
                 </div>
                 <h3 class="fw-bolder">{{ num_specialists }}</h3>
                 <p class="text-white-50">specialist{{ num_specialists|pluralize }} in our team</p>
+                </a>
               </div>
               <div class="col-6 col-md-3 text-center">
+                <a href="{% url 'training-centers:service-list' %}">
                 <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
                   <img src="{% static 'assets/img/index/tool.png' %}" alt="Tool">
                 </div>
                 <h3 class="fw-bolder">{{ num_services }}</h3>
                 <p class="text-white-50">service{{ num_services|pluralize }} providing by us</p>
+                </a>
               </div>
               <div class="col-6 col-md-3 text-center">
                 <div class="icon icon-shape icon-lg border-light rounded-circle mb-4">
