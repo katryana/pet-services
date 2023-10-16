@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "theme_pixel",
+    "storages"
 ]
 
 MIDDLEWARE = [
@@ -141,6 +142,18 @@ STATIC_ROOT = "staticfiles/"
 MEDIA_URL = "media/"
 
 MEDIA_ROOT = (BASE_DIR / "media")
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+
+AWS_QUERYSTRING_AUTH = False
+
+AWS_S3_FILE_OVERWRITE = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
