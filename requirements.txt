@@ -30,6 +30,6 @@ setuptools==65.5.1
 six==1.16.0
 sqlparse==0.4.4
 tzdata==2023.3
-urllib3=2.0.6
+urllib3==2.0.6
 wheel==0.38.4
 whitenoise==6.5.0
